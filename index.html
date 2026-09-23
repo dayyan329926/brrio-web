@@ -540,7 +540,7 @@
           left: 0;
           width: 8px;
           height: 8px;
-          background: var(--ink);
+          background: var(--brand);
           border-radius: 50%;
           pointer-events: none;
           z-index: 9999;
@@ -549,12 +549,14 @@
             width 0.25s ease,
             height 0.25s ease,
             background 0.25s ease;
-          mix-blend-mode: difference;
+          box-shadow: 0 0 0 4px rgba(154, 205, 50, 0.16);
         }
         .cursor-dot.hover {
           width: 44px;
           height: 44px;
-          background: var(--brand-deep);
+          background: rgba(154, 205, 50, 0.22);
+          border: 1px solid rgba(123, 175, 30, 0.75);
+          box-shadow: 0 0 28px rgba(154, 205, 50, 0.38);
         }
       }
 
@@ -10463,6 +10465,8 @@
 
             <form id="leadForm" class="contact-form-3d" action="https://api.web3forms.com/submit" method="POST">
                <input type="hidden" name="access_key" value="983fcfc0-79e6-43b2-a37c-a85d684aa71b">
+              <input type="hidden" name="subject" value="New DrioGrowth consultation request">
+              <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display: none">
               <!-- Name -->
               <div class="form-group-3d">
                 <input
@@ -10552,6 +10556,8 @@
                 <span class="btn-arrow-3d">→</span>
                 <div class="btn-3d-bg"></div>
               </button>
+
+              <p id="formResult" role="status" aria-live="polite" style="min-height: 1.5rem; margin-top: 0.75rem; color: var(--brand-deep);"></p>
 
               <!-- Privacy Text -->
               <p class="form-privacy-3d">
@@ -11415,24 +11421,57 @@
             });
           });
 
-        // Contact form submission: single reliable handler
+        // Contact form submission through Web3Forms.
         const leadForm = document.getElementById("leadForm");
         if (leadForm) {
-          leadForm.addEventListener("submit", (event) => {
+          leadForm.addEventListener("submit", async (event) => {
             event.preventDefault();
-            const formElement =
-              leadForm.querySelector(".contact-form-3d") || leadForm;
             const successElement = document.getElementById("formSuccess");
-            if (!successElement) return;
+            const resultElement = document.getElementById("formResult");
+            const submitButton = leadForm.querySelector("button[type='submit']");
+            const submitText = submitButton?.querySelector(".btn-text-3d");
+            if (!successElement || !resultElement || !submitButton) return;
 
-            formElement.classList.add("hidden");
-            successElement.classList.remove("hidden");
-            successElement.setAttribute("aria-live", "polite");
-            leadForm.reset();
-            successElement.scrollIntoView({
-              behavior: smoothBehavior,
-              block: "center",
-            });
+            submitButton.disabled = true;
+            submitButton.setAttribute("aria-busy", "true");
+            if (submitText) submitText.textContent = "Sending...";
+            resultElement.textContent = "Sending your request...";
+
+            try {
+              const formData = new FormData(leadForm);
+              const payload = Object.fromEntries(formData.entries());
+              const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Accept: "application/json",
+                },
+                body: JSON.stringify(payload),
+              });
+              const result = await response.json();
+              if (!response.ok || !result.success) {
+                throw new Error(result.message || "The form could not be submitted.");
+              }
+
+              leadForm.classList.add("hidden");
+              successElement.classList.remove("hidden");
+              successElement.setAttribute("aria-live", "polite");
+              leadForm.reset();
+              successElement.scrollIntoView({
+                behavior: smoothBehavior,
+                block: "center",
+              });
+            } catch (error) {
+              resultElement.textContent =
+                "We couldn't send your request. Please try again or email info@driogrowth.com.";
+              resultElement.style.color = "#b42318";
+            } finally {
+              submitButton.disabled = false;
+              submitButton.removeAttribute("aria-busy");
+              if (submitText) {
+                submitText.textContent = "Book a 30-minute consultation call";
+              }
+            }
           });
         }
 
@@ -12086,8 +12125,44 @@
           video.addEventListener("ended", () => pauseCard(card, true));
         });
 
-        // Posters are lightweight static images; the actual video source is
-        // hydrated only after a visitor presses play.
+        // Warm only the reviews a visitor is about to see. By the time they
+        // press play the browser has buffered the opening frames, without
+        // downloading every testimonial during the initial page load.
+        function warmVisibleTestimonials() {
+          const count = window.innerWidth <= 1200 ? 2 : 3;
+          testimonialCards.slice(0, count).forEach((card) => {
+            const video = card.querySelector(".video-card-media");
+            if (!video) return;
+            hydrateTestimonialSource(video);
+            video.preload = "auto";
+            video.setAttribute("preload", "auto");
+            video.load();
+          });
+        }
+
+        testimonialCards.forEach((card) => {
+          card.addEventListener("pointerenter", () => {
+            const video = card.querySelector(".video-card-media");
+            if (!video) return;
+            hydrateTestimonialSource(video);
+            video.preload = "auto";
+            video.load();
+          }, { once: true });
+        });
+
+        if (testimonialSection && "IntersectionObserver" in window) {
+          const warmObserver = new IntersectionObserver(
+            (entries, observer) => {
+              if (!entries.some((entry) => entry.isIntersecting)) return;
+              warmVisibleTestimonials();
+              observer.disconnect();
+            },
+            { rootMargin: "900px 0px", threshold: 0 },
+          );
+          warmObserver.observe(testimonialSection);
+        } else {
+          warmVisibleTestimonials();
+        }
 
         // Pause videos when the testimonial section leaves view or slider changes.
         if (testimonialSection && "IntersectionObserver" in window) {

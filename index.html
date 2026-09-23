@@ -81,8 +81,8 @@
 
 
       section#reviews {
-    padding: 10rem;
-}
+        padding: 10rem clamp(2rem, 7vw, 10rem);
+      }
 
       /* ===== LAYOUT UTILITIES ===== */
       .container {
@@ -584,7 +584,7 @@
       }
 
       .header.scrolled {
-        max-width: 1000px;
+        max-width: 1320px;
         margin-top: 1rem;
         background: rgba(250, 247, 240, 0.8);
         backdrop-filter: blur(24px) saturate(160%);
@@ -1193,7 +1193,7 @@
       /* ============================================ */
 
       /* 1. RESPONSIVE GRIDS - Collapse on mobile, restore on desktop */
-      @media (max-width: 768px) {
+      @media (max-width: 900px) {
         .grid-2,
         .grid-3,
         .grid-4 {
@@ -1677,8 +1677,10 @@
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         gap: 1.25rem;
+        width: min(100%, 1200px);
         max-width: 1200px;
         margin: 0 auto;
+        justify-items: center;
       }
 
       .brand-card {
@@ -1686,7 +1688,8 @@
         border: 2px solid var(--ink);
         border-radius: 1rem;
         padding: 1.5rem 0.6rem;
-        width: 200px; /* Set a fixed width for uniform size */
+        width: 100%;
+        max-width: 200px;
         height: 150px; /* Set a fixed height for uniform size */
         margin: 0 auto; /* Center cards in their container */
         display: flex;
@@ -1725,8 +1728,9 @@
       @media (max-width: 640px) {
         .brands-grid {
           /* UPDATED: Mobile grid layout - 3 columns on mobile */
-          grid-template-columns: repeat(3, 1fr);
-          gap: 0.75rem;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 0.6rem;
+          padding-inline: 0.25rem;
         }
 
         .brand-card span[style*="font-size"] {
@@ -2463,11 +2467,12 @@
       /* Carousel Wrapper - Fanned Arrangement */
       .discover-carousel-wrapper {
         position: relative;
+        width: calc(100% - clamp(1.5rem, 5vw, 5rem));
         height: 700px;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 0;
+        margin: 0 auto;
         padding: 0 2rem;
       }
 
@@ -2829,7 +2834,7 @@
 
       @media (max-width: 768px) {
         .discover-section {
-          padding: 3rem 0;
+          padding: 3rem 0.75rem;
         }
 
         .discover-title {
@@ -2854,16 +2859,18 @@
         }
 
         .discover-carousel-wrapper {
-          height: 500px;
+          width: calc(100% - 1rem);
+          height: 420px;
+          padding-inline: 1rem;
         }
 
         .discover-card {
-          width: 300px;
-          height: 480px;
+          width: min(68vw, 260px);
+          height: 380px;
         }
 
         .card-image-placeholder {
-          height: 370px;
+          height: 285px;
         }
 
         .brand-logo {
@@ -2889,12 +2896,12 @@
         }
 
         .discover-card[data-position="left"] {
-          transform: translateX(-100px) translateY(5px) rotate(-7deg)
+          transform: translateX(-88px) translateY(5px) rotate(-7deg)
             scale(0.92);
         }
 
         .discover-card[data-position="right"] {
-          transform: translateX(100px) translateY(5px) rotate(7deg) scale(0.92);
+          transform: translateX(88px) translateY(5px) rotate(7deg) scale(0.92);
         }
 
         .discover-card[data-position="far-right"] {
@@ -3469,7 +3476,7 @@
       }
 
       .testimonial-card-3d {
-        flex: 0 0 calc((100% - 6rem) / 4);
+        flex: 0 0 calc((100% - 4rem) / 3);
         min-width: 0;
         aspect-ratio: 9 / 14;
         border-radius: 2rem;
@@ -3757,7 +3764,7 @@
       }
 
       .testimonial-card-3d.video-card .video-card-media {
-        pointer-events: none;
+        pointer-events: auto;
       }
 
       .testimonial-card-3d .video-card-media {
@@ -3797,7 +3804,7 @@
 
       @media (max-width: 1200px) {
         .testimonial-card-3d {
-          flex-basis: calc((100% - 3rem) / 3);
+          flex-basis: calc((100% - 1.5rem) / 2);
         }
 
         .slider-3d-track {
@@ -3830,13 +3837,14 @@
 
       @media (max-width: 640px) {
         .testimonial-card-3d {
-          flex-basis: 100%;
-          aspect-ratio: auto;
-          min-height: 500px;
+          flex-basis: calc((100% - 1rem) / 2.5);
+          aspect-ratio: 3 / 4;
+          min-height: 0;
+          border-radius: 1rem;
         }
 
         .testimonial-3d-slider {
-          padding: 0 3rem;
+          padding: 0 1rem;
         }
 
         .slider-nav-btn {
@@ -5509,8 +5517,10 @@
       }
       @media (max-width: 600px) {
         .brand-card {
-          width: 120px;
-          height: 90px;
+          width: 100%;
+          max-width: 110px;
+          height: 82px;
+          padding: 0.7rem 0.35rem;
         }
         .grid-lg-4 {
           grid-template-columns: repeat(2, 1fr);
@@ -6602,6 +6612,798 @@
         }
       }
 
+      /* Founder copy refinement — preserves the original composition. */
+      .brand-story__note {
+        padding: 1.25rem 1.35rem;
+        border: 1px solid rgba(255, 255, 255, 0.62);
+        border-radius: 1.35rem;
+        background: rgba(250, 247, 240, 0.68);
+        box-shadow:
+          0 18px 46px rgba(43, 43, 43, 0.08),
+          inset 0 1px 0 rgba(255, 255, 255, 0.76);
+        backdrop-filter: blur(16px) saturate(125%);
+        -webkit-backdrop-filter: blur(16px) saturate(125%);
+      }
+
+      .brand-story__note:hover {
+        transform: translateY(-6px);
+        border-color: rgba(154, 205, 50, 0.34);
+        background: rgba(250, 247, 240, 0.86);
+        box-shadow:
+          0 24px 58px rgba(43, 43, 43, 0.12),
+          inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      }
+
+      .brand-story__note--about {
+        max-width: 330px;
+      }
+
+      .brand-story__note--role {
+        max-width: 340px;
+      }
+
+      .brand-story__note--passion {
+        max-width: 360px;
+      }
+
+      .brand-story__note-title {
+        margin-bottom: 0.65rem;
+        font-family: "Urbanist", system-ui, sans-serif;
+        font-size: clamp(1.08rem, 1.5vw, 1.35rem);
+        line-height: 1;
+        letter-spacing: -0.02em;
+        font-weight: 850;
+      }
+
+      .brand-story__note-title span {
+        margin-top: 0.32rem;
+        font-family: "Urbanist", system-ui, sans-serif;
+        color: rgba(43, 43, 43, 0.56);
+        font-size: 0.62em;
+        font-style: normal;
+        font-weight: 700;
+        letter-spacing: 0.055em;
+        text-transform: uppercase;
+      }
+
+      .brand-story__note-text {
+        font-family: "Urbanist", system-ui, sans-serif;
+        font-size: clamp(0.92rem, 1.05vw, 1rem);
+        line-height: 1.5;
+        font-style: normal;
+        color: rgba(43, 43, 43, 0.78);
+      }
+
+      .brand-story__note--about .brand-story__note-text {
+        font-family: "Urbanist", system-ui, sans-serif;
+        font-size: clamp(0.92rem, 1.05vw, 1rem);
+        line-height: 1.5;
+        font-style: normal;
+        color: rgba(43, 43, 43, 0.78);
+      }
+
+      .brand-story__note-text strong {
+        display: inline;
+        letter-spacing: 0.01em;
+      }
+
+      @media (max-width: 767px) {
+        .brand-story__note,
+        .brand-story__note--about,
+        .brand-story__note--role,
+        .brand-story__note--passion {
+          width: 100%;
+          max-width: 560px;
+          padding: 1.3rem;
+          text-align: left;
+        }
+
+        .brand-story__note-title {
+          font-size: 1.2rem;
+        }
+
+        .brand-story__note-text,
+        .brand-story__note--about .brand-story__note-text {
+          font-size: 0.98rem;
+          line-height: 1.52;
+        }
+      }
+
+      /* Previous founder layout retained; experimental premium treatment disabled. */
+      @media (max-width: 0px) {
+      .brand-story {
+        padding: clamp(4rem, 7vw, 7rem) 0;
+        background:
+          radial-gradient(circle at 12% 18%, rgba(154, 205, 50, 0.17), transparent 26rem),
+          linear-gradient(180deg, #f6f7ed 0%, var(--cream) 100%);
+      }
+
+      .brand-story::after {
+        display: none;
+      }
+
+      .brand-story__wrap {
+        width: min(100% - 2rem, 1400px);
+        min-height: 0;
+        display: grid;
+        grid-template-columns: minmax(0, 0.92fr) minmax(330px, 0.82fr) minmax(0, 0.92fr);
+        grid-template-rows: auto minmax(540px, auto);
+        gap: clamp(2rem, 4vw, 4.5rem);
+        align-items: center;
+        padding: clamp(2rem, 5vw, 5rem);
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: clamp(2rem, 4vw, 3.5rem);
+        background:
+          radial-gradient(circle at 50% 42%, rgba(154, 205, 50, 0.18), transparent 25rem),
+          linear-gradient(145deg, #292a27 0%, #171816 100%);
+        box-shadow:
+          0 40px 100px rgba(43, 43, 43, 0.2),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      }
+
+      .brand-story__wrap::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.35;
+        background-image: radial-gradient(rgba(255, 255, 255, 0.16) 0.7px, transparent 0.7px);
+        background-size: 18px 18px;
+        mask-image: linear-gradient(to bottom, black, transparent 78%);
+      }
+
+      .brand-story__heading {
+        grid-column: 1 / -1;
+        grid-row: 1;
+        max-width: none;
+        margin: 0;
+        color: var(--cream);
+        font-size: clamp(3rem, 7vw, 6.7rem);
+        letter-spacing: -0.065em;
+        text-align: left;
+      }
+
+      .brand-story__highlight {
+        color: var(--brand);
+      }
+
+      .brand-story__highlight::before {
+        display: none;
+      }
+
+      .brand-story__photo-shell {
+        position: relative;
+        left: auto;
+        top: auto;
+        grid-column: 2;
+        grid-row: 2;
+        width: 100%;
+        align-self: stretch;
+        transform: none;
+      }
+
+      .brand-story__photo-card {
+        min-height: 540px;
+        height: 100%;
+        border: 1px solid rgba(154, 205, 50, 0.38);
+        border-radius: 999px 999px 2rem 2rem;
+        background: linear-gradient(160deg, rgba(154, 205, 50, 0.32), rgba(244, 196, 48, 0.08));
+        box-shadow:
+          0 32px 80px rgba(0, 0, 0, 0.38),
+          0 0 0 10px rgba(154, 205, 50, 0.045);
+      }
+
+      .brand-story__photo-card img {
+        min-height: 540px;
+        height: 100%;
+      }
+
+      .brand-story__photo-card:hover {
+        transform: translateY(-6px);
+        box-shadow:
+          0 42px 100px rgba(0, 0, 0, 0.48),
+          0 0 0 10px rgba(154, 205, 50, 0.08);
+      }
+
+      .brand-story__note {
+        position: relative;
+        inset: auto;
+        z-index: 6;
+        width: 100%;
+        max-width: none;
+        padding: clamp(1.25rem, 2.4vw, 2rem);
+        border: 1px solid rgba(255, 255, 255, 0.11);
+        border-radius: 1.5rem;
+        background: rgba(255, 255, 255, 0.055);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.055);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+      }
+
+      .brand-story__note:hover {
+        transform: translateY(-5px);
+        border-color: rgba(154, 205, 50, 0.32);
+        background: rgba(255, 255, 255, 0.085);
+        box-shadow: 0 24px 55px rgba(0, 0, 0, 0.2);
+      }
+
+      .brand-story__note--about {
+        grid-column: 1;
+        grid-row: 2;
+        align-self: center;
+        padding-top: 3.2rem;
+        background: transparent;
+        border-color: transparent;
+        box-shadow: none;
+      }
+
+      .brand-story__note--about::before {
+        content: "“";
+        position: absolute;
+        top: -0.2rem;
+        left: 1rem;
+        color: var(--brand);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 6rem;
+        line-height: 1;
+        opacity: 0.92;
+      }
+
+      .brand-story__note--about:hover {
+        background: transparent;
+        border-color: transparent;
+        box-shadow: none;
+      }
+
+      .brand-story__note--role {
+        grid-column: 3;
+        grid-row: 2;
+        align-self: start;
+        margin-top: 1rem;
+      }
+
+      .brand-story__note--passion {
+        grid-column: 3;
+        grid-row: 2;
+        align-self: end;
+        margin-bottom: 1rem;
+      }
+
+      .brand-story__note-title {
+        margin-bottom: 0.8rem;
+        font-family: "Urbanist", system-ui, sans-serif;
+        color: var(--brand);
+        font-size: clamp(1.15rem, 1.7vw, 1.5rem);
+        font-weight: 800;
+        letter-spacing: -0.025em;
+        text-transform: none;
+      }
+
+      .brand-story__note-title span {
+        margin-top: 0.3rem;
+        color: rgba(250, 247, 240, 0.52);
+        font-family: "Urbanist", system-ui, sans-serif;
+        font-size: 0.68em;
+        font-style: normal;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .brand-story__note-text {
+        font-family: "Urbanist", system-ui, sans-serif;
+        color: rgba(250, 247, 240, 0.74);
+        font-size: clamp(0.98rem, 1.25vw, 1.08rem);
+        font-style: normal;
+        line-height: 1.65;
+      }
+
+      .brand-story__note--about .brand-story__note-text {
+        color: rgba(250, 247, 240, 0.9);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(1.2rem, 2vw, 1.65rem);
+        font-style: italic;
+        line-height: 1.42;
+      }
+
+      .brand-story__note-text strong {
+        color: var(--brand);
+      }
+
+      .brand-story__connector,
+      .brand-story__doodle {
+        display: none;
+      }
+
+      .brand-story__reveal--scale,
+      .brand-story__reveal--scale.is-visible {
+        transform: translateY(34px);
+      }
+
+      .brand-story__reveal--scale.is-visible {
+        transform: translateY(0);
+      }
+
+      @media (max-width: 980px) {
+        .brand-story__wrap {
+          grid-template-columns: minmax(260px, 0.9fr) minmax(0, 1.1fr);
+          grid-template-rows: auto auto auto;
+          gap: 1.5rem;
+        }
+
+        .brand-story__photo-shell {
+          grid-column: 1;
+          grid-row: 2 / span 2;
+        }
+
+        .brand-story__note--about {
+          grid-column: 2;
+          grid-row: 2;
+          align-self: end;
+        }
+
+        .brand-story__note--role,
+        .brand-story__note--passion {
+          grid-column: 2;
+          grid-row: 3;
+          align-self: start;
+          margin: 0;
+        }
+
+        .brand-story__note--passion {
+          margin-top: 12rem;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .brand-story {
+          padding: 2.8rem 0;
+        }
+
+        .brand-story__wrap {
+          width: min(100% - 1rem, 1400px);
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 1rem;
+          padding: 1.25rem;
+          border-radius: 2rem;
+        }
+
+        .brand-story__heading {
+          margin-bottom: 0.75rem;
+          font-size: clamp(2.7rem, 14vw, 4.3rem);
+          text-align: center;
+        }
+
+        .brand-story__photo-shell {
+          order: 1;
+          width: min(100%, 330px);
+          align-self: center;
+        }
+
+        .brand-story__photo-card,
+        .brand-story__photo-card img {
+          min-height: 410px;
+        }
+
+        .brand-story__note--about {
+          order: 2;
+          padding: 2.7rem 0.45rem 1rem;
+          text-align: left;
+        }
+
+        .brand-story__note--role {
+          order: 3;
+        }
+
+        .brand-story__note--passion {
+          order: 4;
+          margin: 0;
+        }
+
+        .brand-story__note {
+          text-align: left;
+        }
+      }
+      }
+
+      /* ===== LANDING PAGE SHOWCASE ===== */
+      .landing-showcase {
+        position: relative;
+        padding: clamp(5rem, 9vw, 9rem) 0;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 12% 15%, rgba(154, 205, 50, 0.18), transparent 28rem),
+          linear-gradient(180deg, var(--cream) 0%, #f3f6e7 100%);
+        border-top: 1px solid rgba(43, 43, 43, 0.08);
+        border-bottom: 1px solid rgba(43, 43, 43, 0.08);
+      }
+
+      .landing-showcase::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.28;
+        background-image: radial-gradient(rgba(43, 43, 43, 0.22) 0.75px, transparent 0.75px);
+        background-size: 18px 18px;
+        mask-image: linear-gradient(to bottom, black, transparent 70%);
+      }
+
+      .landing-showcase::after {
+        content: "";
+        position: absolute;
+        z-index: 0;
+        top: 48%;
+        left: -22rem;
+        width: 22rem;
+        height: 22rem;
+        border-radius: 50%;
+        background: rgba(154, 205, 50, 0.26);
+        filter: blur(75px);
+        pointer-events: none;
+        animation: landing-light-sweep 14s ease-in-out infinite;
+      }
+
+      .landing-showcase__head {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: minmax(0, 1.45fr) minmax(16rem, 0.55fr);
+        align-items: end;
+        gap: 2rem;
+        max-width: 1400px;
+        margin: 0 auto clamp(2.75rem, 5vw, 4.5rem);
+        padding: 0 1.5rem;
+      }
+
+      .landing-showcase__eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65rem;
+        margin-bottom: 1rem;
+        color: var(--brand-deep);
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .landing-showcase__eyebrow::before {
+        content: "";
+        width: 0.55rem;
+        height: 0.55rem;
+        border-radius: 50%;
+        background: var(--brand);
+        box-shadow: 0 0 0 6px rgba(154, 205, 50, 0.16);
+      }
+
+      .landing-showcase__title {
+        max-width: 980px;
+        font-size: clamp(2.65rem, 6vw, 6rem) !important;
+        letter-spacing: -0.055em;
+      }
+
+      .landing-showcase__title span {
+        color: var(--brand);
+      }
+
+      .landing-showcase__intro {
+        max-width: 30rem;
+        padding-bottom: 0.55rem;
+        color: #5e6257;
+        font-size: clamp(1rem, 1.3vw, 1.18rem);
+        line-height: 1.65;
+      }
+
+      .landing-showcase__rail {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        overflow: hidden;
+        padding: 1.25rem 0 2.2rem;
+      }
+
+      .landing-showcase__rail::before,
+      .landing-showcase__rail::after {
+        content: "";
+        position: absolute;
+        z-index: 4;
+        top: 0;
+        bottom: 0;
+        width: clamp(2rem, 8vw, 9rem);
+        pointer-events: none;
+      }
+
+      .landing-showcase__rail::before {
+        left: 0;
+        background: linear-gradient(90deg, #f5f6e9, transparent);
+      }
+
+      .landing-showcase__rail::after {
+        right: 0;
+        background: linear-gradient(-90deg, #f5f6e9, transparent);
+      }
+
+      .landing-showcase__track {
+        display: flex;
+        width: max-content;
+        gap: clamp(1rem, 2vw, 1.75rem);
+        padding-left: clamp(1rem, 2vw, 1.75rem);
+        animation: landing-showcase-marquee 42s linear infinite;
+        will-change: transform;
+      }
+
+      .landing-showcase__rail:hover .landing-showcase__track,
+      .landing-showcase__rail:focus-within .landing-showcase__track,
+      .landing-showcase__rail.is-paused .landing-showcase__track {
+        animation-play-state: paused;
+      }
+
+      .landing-showcase__rail.is-paused .landing-preview {
+        animation-play-state: paused;
+      }
+
+      .landing-preview {
+        position: relative;
+        width: clamp(17rem, 25vw, 25rem);
+        flex: 0 0 auto;
+        overflow: hidden;
+        border: 1px solid rgba(43, 43, 43, 0.16);
+        border-radius: 1.65rem;
+        background: #fff;
+        box-shadow: 0 24px 65px rgba(43, 43, 43, 0.13);
+        transform: translateY(0) rotate(var(--preview-tilt, 0deg));
+        transition: transform 350ms ease, box-shadow 350ms ease;
+        animation: landing-card-wave 7.6s ease-in-out infinite;
+        animation-delay: var(--wave-delay, 0s);
+        will-change: transform;
+      }
+
+      .landing-preview__visit {
+        position: absolute;
+        z-index: 5;
+        inset: 0;
+        border-radius: inherit;
+      }
+
+      .landing-preview__visit:focus-visible {
+        outline: 3px solid var(--brand);
+        outline-offset: 4px;
+      }
+
+      .landing-preview:nth-child(6n + 1) { --wave-delay: -0.4s; --wave-lift: -1.35rem; }
+      .landing-preview:nth-child(6n + 2) { --wave-delay: -3.1s; --wave-lift: 1.6rem; }
+      .landing-preview:nth-child(6n + 3) { --wave-delay: -5.7s; --wave-lift: -0.8rem; }
+      .landing-preview:nth-child(6n + 4) { --wave-delay: -2.2s; --wave-lift: 1.15rem; }
+      .landing-preview:nth-child(6n + 5) { --wave-delay: -6.4s; --wave-lift: -1.55rem; }
+      .landing-preview:nth-child(6n + 6) { --wave-delay: -4.3s; --wave-lift: 0.75rem; }
+
+      .landing-preview:hover {
+        z-index: 3;
+        box-shadow: 0 32px 80px rgba(43, 43, 43, 0.2);
+        animation-play-state: paused;
+      }
+
+      .landing-preview__browser {
+        display: flex;
+        align-items: center;
+        gap: 0.42rem;
+        height: 2.75rem;
+        padding: 0 1rem;
+        background: #292927;
+      }
+
+      .landing-preview__dot {
+        width: 0.48rem;
+        height: 0.48rem;
+        border-radius: 50%;
+        background: rgba(250, 247, 240, 0.42);
+      }
+
+      .landing-preview__address {
+        width: 44%;
+        height: 0.42rem;
+        margin-left: auto;
+        border-radius: 999px;
+        background: rgba(250, 247, 240, 0.12);
+      }
+
+      .landing-preview__screen {
+        position: relative;
+        height: clamp(24rem, 42vw, 37rem);
+        overflow: hidden;
+        background: #e8eadf;
+      }
+
+      .landing-preview__screen img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: var(--preview-position, center);
+        filter: saturate(0.92);
+        transition: transform 800ms cubic-bezier(0.2, 0.8, 0.2, 1), filter 350ms ease;
+      }
+
+      .landing-preview:hover .landing-preview__screen img {
+        transform: scale(1.045);
+        filter: saturate(1.05);
+      }
+
+      .landing-preview__screen::after {
+        content: "";
+        position: absolute;
+        inset: 38% 0 0;
+        background: linear-gradient(transparent, rgba(17, 17, 16, 0.76));
+        pointer-events: none;
+      }
+
+      .landing-preview__copy {
+        position: absolute;
+        z-index: 2;
+        right: 1.35rem;
+        bottom: 1.35rem;
+        left: 1.35rem;
+        color: white;
+      }
+
+      .landing-preview__tag {
+        display: inline-flex;
+        margin-bottom: 0.65rem;
+        padding: 0.34rem 0.7rem;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        background: rgba(20, 20, 18, 0.5);
+        font-size: 0.66rem;
+        font-weight: 800;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        backdrop-filter: blur(8px);
+      }
+
+      .landing-preview__copy h3 {
+        color: white;
+        font-size: clamp(1.45rem, 2vw, 2rem);
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+      }
+
+      .landing-preview__copy p {
+        margin-top: 0.5rem;
+        color: rgba(255, 255, 255, 0.76);
+        font-size: 0.86rem;
+        line-height: 1.45;
+      }
+
+      .landing-showcase__note {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.7rem;
+        margin-top: 0.25rem;
+        color: #74786d;
+        font-size: 0.84rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .landing-showcase__note span {
+        color: var(--brand-deep);
+        font-size: 1.1rem;
+      }
+
+      @keyframes landing-showcase-marquee {
+        from { transform: translateX(0); }
+        to { transform: translateX(calc(-50% - 0.875rem)); }
+      }
+
+      @keyframes landing-card-wave {
+        0%, 100% {
+          transform: translateY(0) rotate(var(--preview-tilt, 0deg)) scale(0.985);
+        }
+        50% {
+          transform: translateY(var(--wave-lift, -1rem)) rotate(calc(0deg - var(--preview-tilt, 0deg))) scale(1);
+        }
+      }
+
+      @keyframes landing-light-sweep {
+        0%, 100% { transform: translate3d(-5vw, 2rem, 0) scale(0.8); opacity: 0; }
+        18% { opacity: 0.65; }
+        50% { transform: translate3d(62vw, -3rem, 0) scale(1.2); opacity: 0.9; }
+        82% { opacity: 0.55; }
+        100% { transform: translate3d(125vw, 1rem, 0) scale(0.85); opacity: 0; }
+      }
+
+      @media (max-width: 800px) {
+        .landing-showcase__head {
+          grid-template-columns: 1fr;
+          gap: 1.25rem;
+        }
+
+        .landing-showcase__title {
+          font-size: clamp(2.5rem, 13vw, 4.2rem) !important;
+        }
+
+        .landing-showcase__intro {
+          padding: 0;
+        }
+
+        .landing-preview {
+          width: min(31vw, 9.5rem);
+          border-radius: 0.95rem;
+          --preview-tilt: 0deg !important;
+        }
+
+        .landing-preview__screen {
+          height: clamp(12rem, 48vw, 14rem);
+        }
+
+        .landing-showcase__track {
+          gap: 0.65rem;
+          padding-left: 0.75rem;
+        }
+
+        .landing-preview__browser {
+          height: 1.65rem;
+          gap: 0.22rem;
+          padding: 0 0.55rem;
+        }
+
+        .landing-preview__dot {
+          width: 0.28rem;
+          height: 0.28rem;
+        }
+
+        .landing-preview__copy {
+          right: 0.65rem;
+          bottom: 0.65rem;
+          left: 0.65rem;
+        }
+
+        .landing-preview__copy h3 {
+          font-size: 0.9rem;
+          line-height: 1.05;
+        }
+
+        .landing-preview__copy p {
+          display: none;
+        }
+
+        .landing-preview__tag {
+          margin-bottom: 0.38rem;
+          padding: 0.28rem 0.45rem;
+          font-size: 0.48rem;
+        }
+
+        .landing-showcase__note {
+          display: none;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .landing-showcase__track {
+          animation: none;
+          overflow-x: auto;
+          max-width: 100vw;
+          scroll-snap-type: x mandatory;
+        }
+
+        .landing-preview {
+          animation: none;
+          scroll-snap-align: center;
+        }
+
+        .landing-showcase::after {
+          animation: none;
+          opacity: 0.35;
+          transform: translate3d(55vw, 0, 0);
+        }
+      }
     </style>
 
     <script type="application/ld+json">
@@ -6645,7 +7447,7 @@
 
         <div class="flex items-center gap-3">
           <a href="#contact" class="btn btn-primary">
-            Start a Project
+            Book a 30-minute consultation call
             <span class="arrow">↗</span>
           </a>
           <button
@@ -6710,19 +7512,21 @@
 
         <!-- Animated Headline -->
         <h1 class="h-display hero-main-title">
-          <span class="title-word">Scale</span>
-          <span class="title-word">Your</span>
-          <span class="title-word">Brand</span>
-          <span class="title-word">with</span>
+          <span class="title-word">Work</span>
+          <span class="title-word">With</span>
+          <span class="title-word">the</span>
+          <span class="title-word">Team</span>
           <br />
-          <span class="title-word" style="color: var(--brand)">Stunning</span>
-          <span class="title-word">Ad Campaigns</span>
+          <span class="title-word">Managing</span>
+          <span class="title-word" style="color: var(--brand)">$5M+</span>
+          <span class="title-word">in Ad Spend Every Month</span>
         </h1>
 
         <!-- Subtitle -->
         <p class="hero-main-subtitle">
-          Boost Your Brand with High-Impact Paid Ads from our expert media
-          buyers. Our team is ready to propel your business forward.
+          We help ecommerce and lead-generation brands scale through
+          performance creative, disciplined media buying, and
+          conversion-focused strategy.
         </p>
 
         <!-- Hand-drawn Left Annotation -->
@@ -6798,11 +7602,12 @@
                   loop
                   playsinline
                   preload="auto"
+                  poster="asstes/optimized/posters/hero-collaboration.jpg"
                   disablepictureinpicture
                   controlslist="nodownload noplaybackrate noremoteplayback"
                   aria-label="Team collaboration creative video"
                 >
-                  <source src="asstes/vaclionew-7.mp4" type="video/mp4" />
+                  <source data-src="asstes/optimized/hero-collaboration-hq.m4v" type="video/mp4" />
                 </video>
                 <div class="card-texture"></div>
               </div>
@@ -6818,12 +7623,13 @@
                   loop
                   playsinline
                   preload="auto"
+                  poster="asstes/optimized/posters/hero-planning.jpg"
                   disablepictureinpicture
                   controlslist="nodownload noplaybackrate noremoteplayback"
                   aria-label="Performance creative planning video"
                 >
                   <source
-                    src="asstes/2025-11-18-114829818.mp4"
+                    data-src="asstes/optimized/hero-planning-hq.m4v"
                     type="video/mp4"
                   />
                 </video>
@@ -6841,12 +7647,13 @@
                   loop
                   playsinline
                   preload="auto"
+                  poster="asstes/optimized/posters/hero-workflow.jpg"
                   disablepictureinpicture
                   controlslist="nodownload noplaybackrate noremoteplayback"
                   aria-label="Team workflow video"
                 >
                   <source
-                    src="asstes/ads/WhatsApp Video 2026-05-07 at 9.38.32 PM.mp4"
+                    data-src="asstes/optimized/hero-workflow-hq.m4v"
                     type="video/mp4"
                   />
                 </video>
@@ -6864,12 +7671,13 @@
                   loop
                   playsinline
                   preload="auto"
+                  poster="asstes/optimized/posters/hero-testing.jpg"
                   disablepictureinpicture
                   controlslist="nodownload noplaybackrate noremoteplayback"
                   aria-label="Creative testing video"
                 >
                   <source
-                    src="asstes/ads/WhatsApp Video 2026-05-07 at 9.39.37 PM.mp4"
+                    data-src="asstes/optimized/hero-testing-hq.m4v"
                     type="video/mp4"
                   />
                 </video>
@@ -6887,12 +7695,13 @@
                   loop
                   playsinline
                   preload="auto"
+                  poster="asstes/optimized/posters/hero-strategy.jpg"
                   disablepictureinpicture
                   controlslist="nodownload noplaybackrate noremoteplayback"
                   aria-label="Creative strategy video"
                 >
                   <source
-                    src="asstes/WhatsApp Video 2026-05-11 at 7.06.18 PM.mp4"
+                    data-src="asstes/optimized/hero-strategy-hq.m4v"
                     type="video/mp4"
                   />
                 </video>
@@ -6910,12 +7719,13 @@
                   loop
                   playsinline
                   preload="auto"
+                  poster="asstes/optimized/posters/hero-performance.jpg"
                   disablepictureinpicture
                   controlslist="nodownload noplaybackrate noremoteplayback"
                   aria-label="Ad performance video"
                 >
                   <source
-                    src="asstes/ads/WhatsApp Video 2026-05-07 at 9.39.52 PM.mp4"
+                    data-src="asstes/optimized/hero-performance-hq.m4v"
                     type="video/mp4"
                   />
                 </video>
@@ -6933,12 +7743,13 @@
                   loop
                   playsinline
                   preload="auto"
+                  poster="asstes/optimized/posters/hero-reel.jpg"
                   disablepictureinpicture
                   controlslist="nodownload noplaybackrate noremoteplayback"
                   aria-label="Team collaboration video reel"
                 >
                   <source
-                    src="asstes/WhatsApp Video 2026-05-11 at 6.59.28 PM.mp4"
+                    data-src="asstes/optimized/hero-reel-hq.m4v"
                     type="video/mp4"
                   />
                 </video>
@@ -6978,7 +7789,9 @@
             </svg>
             It's free
           </span>
-          <a href="#contact" class="btn-dashed"> Get Started </a>
+          <a href="#contact" class="btn-dashed">
+            Book a Free 30-Minute Consultation
+          </a>
         </div>
       </div>
     </section>
@@ -7792,7 +8605,118 @@
       </div>
     </section>
 
+    <!-- ============== LANDING PAGE SHOWCASE ============== -->
+    <section class="landing-showcase" id="landing-pages" aria-labelledby="landing-showcase-title">
+      <div class="landing-showcase__head">
+        <div>
+          <p class="landing-showcase__eyebrow">Designed to convert</p>
+          <h2 class="landing-showcase__title" id="landing-showcase-title">
+            Landing pages that turn <span>attention into action.</span>
+          </h2>
+        </div>
+        <p class="landing-showcase__intro">
+          From the first headline to the final click, every page is shaped around one clear goal: making the next step feel effortless.
+        </p>
+      </div>
 
+      <div class="landing-showcase__rail" aria-label="Selected landing page designs">
+        <div class="landing-showcase__track">
+          <article class="landing-preview" style="--preview-tilt: -1.4deg; --preview-position: center">
+            <div class="landing-preview__browser" aria-hidden="true">
+              <span class="landing-preview__dot"></span><span class="landing-preview__dot"></span><span class="landing-preview__dot"></span><span class="landing-preview__address"></span>
+            </div>
+            <div class="landing-preview__screen">
+              <img src="asstes/landing-pages/vital-lifestylez.jpg" alt="Vital Lifestylez homepage preview" loading="lazy" decoding="async" />
+              <div class="landing-preview__copy"><span class="landing-preview__tag">Wellness ecommerce</span><h3>Vital Lifestylez</h3><p>Performance-led product storytelling for a growing wellness brand.</p></div>
+            </div>
+            <a class="landing-preview__visit" href="https://vitallifestylez.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit the Vital Lifestylez website"></a>
+          </article>
+
+          <article class="landing-preview" style="--preview-tilt: 1.2deg; --preview-position: center top">
+            <div class="landing-preview__browser" aria-hidden="true">
+              <span class="landing-preview__dot"></span><span class="landing-preview__dot"></span><span class="landing-preview__dot"></span><span class="landing-preview__address"></span>
+            </div>
+            <div class="landing-preview__screen">
+              <img src="asstes/landing-pages/malilou.jpg" alt="Malilou homepage preview" loading="lazy" decoding="async" />
+              <div class="landing-preview__copy"><span class="landing-preview__tag">Luxury ecommerce</span><h3>Malilou</h3><p>A refined, editorial storefront built around premium leather goods.</p></div>
+            </div>
+            <a class="landing-preview__visit" href="https://malilou.com.au/" target="_blank" rel="noopener noreferrer" aria-label="Visit the Malilou website"></a>
+          </article>
+
+          <article class="landing-preview" style="--preview-tilt: -0.8deg; --preview-position: 62% center">
+            <div class="landing-preview__browser" aria-hidden="true">
+              <span class="landing-preview__dot"></span><span class="landing-preview__dot"></span><span class="landing-preview__dot"></span><span class="landing-preview__address"></span>
+            </div>
+            <div class="landing-preview__screen">
+              <img src="asstes/landing-pages/shop-vibn.jpg" alt="Vibn homepage preview" loading="lazy" decoding="async" />
+              <div class="landing-preview__copy"><span class="landing-preview__tag">Fashion ecommerce</span><h3>Vibn</h3><p>A bold shopping journey designed around discovery and conversion.</p></div>
+            </div>
+            <a class="landing-preview__visit" href="https://www.shopvibn.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit the Vibn website"></a>
+          </article>
+
+          <article class="landing-preview" style="--preview-tilt: 1.5deg; --preview-position: center">
+            <div class="landing-preview__browser" aria-hidden="true">
+              <span class="landing-preview__dot"></span><span class="landing-preview__dot"></span><span class="landing-preview__dot"></span><span class="landing-preview__address"></span>
+            </div>
+            <div class="landing-preview__screen">
+              <img src="asstes/landing-pages/studley-duds.jpg" alt="Studley Duds homepage preview" loading="lazy" decoding="async" />
+              <div class="landing-preview__copy"><span class="landing-preview__tag">Lifestyle ecommerce</span><h3>Studley Duds</h3><p>Personality-rich design that turns a playful brand into a destination.</p></div>
+            </div>
+            <a class="landing-preview__visit" href="http://studleyduds.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit the Studley Duds website"></a>
+          </article>
+
+          <article class="landing-preview" style="--preview-tilt: -1.1deg; --preview-position: center top">
+            <div class="landing-preview__browser" aria-hidden="true">
+              <span class="landing-preview__dot"></span><span class="landing-preview__dot"></span><span class="landing-preview__dot"></span><span class="landing-preview__address"></span>
+            </div>
+            <div class="landing-preview__screen">
+              <img src="asstes/landing-pages/curio-blvd.jpg" alt="Curio Blvd homepage preview" loading="lazy" decoding="async" />
+              <div class="landing-preview__copy"><span class="landing-preview__tag">Jewelry ecommerce</span><h3>Curio Blvd</h3><p>An art-directed storefront that makes every product feel collectible.</p></div>
+            </div>
+            <a class="landing-preview__visit" href="https://curioblvd.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit the Curio Blvd website"></a>
+          </article>
+
+          <article class="landing-preview" style="--preview-tilt: 0.9deg; --preview-position: center">
+            <div class="landing-preview__browser" aria-hidden="true">
+              <span class="landing-preview__dot"></span><span class="landing-preview__dot"></span><span class="landing-preview__dot"></span><span class="landing-preview__address"></span>
+            </div>
+            <div class="landing-preview__screen">
+              <img src="asstes/landing-pages/revarcine.jpg" alt="Revar Cine homepage preview" loading="lazy" decoding="async" />
+              <div class="landing-preview__copy"><span class="landing-preview__tag">Cinema technology</span><h3>Revar Cine</h3><p>A cinematic product experience where precision meets visual impact.</p></div>
+            </div>
+            <a class="landing-preview__visit" href="https://www.revarcine.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit the Revar Cine website"></a>
+          </article>
+
+          <!-- Duplicate set keeps the right-to-left loop seamless. -->
+          <article class="landing-preview" aria-hidden="true" style="--preview-tilt: -1.4deg; --preview-position: center">
+            <div class="landing-preview__browser"><span class="landing-preview__dot"></span><span class="landing-preview__dot"></span><span class="landing-preview__dot"></span><span class="landing-preview__address"></span></div>
+            <div class="landing-preview__screen"><img src="asstes/landing-pages/vital-lifestylez.jpg" alt="" loading="lazy" decoding="async" /><div class="landing-preview__copy"><span class="landing-preview__tag">Wellness ecommerce</span><h3>Vital Lifestylez</h3><p>Performance-led product storytelling for a growing wellness brand.</p></div></div>
+          </article>
+          <article class="landing-preview" aria-hidden="true" style="--preview-tilt: 1.2deg; --preview-position: center top">
+            <div class="landing-preview__browser"><span class="landing-preview__dot"></span><span class="landing-preview__dot"></span><span class="landing-preview__dot"></span><span class="landing-preview__address"></span></div>
+            <div class="landing-preview__screen"><img src="asstes/landing-pages/malilou.jpg" alt="" loading="lazy" decoding="async" /><div class="landing-preview__copy"><span class="landing-preview__tag">Luxury ecommerce</span><h3>Malilou</h3><p>A refined, editorial storefront built around premium leather goods.</p></div></div>
+          </article>
+          <article class="landing-preview" aria-hidden="true" style="--preview-tilt: -0.8deg; --preview-position: 62% center">
+            <div class="landing-preview__browser"><span class="landing-preview__dot"></span><span class="landing-preview__dot"></span><span class="landing-preview__dot"></span><span class="landing-preview__address"></span></div>
+            <div class="landing-preview__screen"><img src="asstes/landing-pages/shop-vibn.jpg" alt="" loading="lazy" decoding="async" /><div class="landing-preview__copy"><span class="landing-preview__tag">Fashion ecommerce</span><h3>Vibn</h3><p>A bold shopping journey designed around discovery and conversion.</p></div></div>
+          </article>
+          <article class="landing-preview" aria-hidden="true" style="--preview-tilt: 1.5deg; --preview-position: center">
+            <div class="landing-preview__browser"><span class="landing-preview__dot"></span><span class="landing-preview__dot"></span><span class="landing-preview__dot"></span><span class="landing-preview__address"></span></div>
+            <div class="landing-preview__screen"><img src="asstes/landing-pages/studley-duds.jpg" alt="" loading="lazy" decoding="async" /><div class="landing-preview__copy"><span class="landing-preview__tag">Lifestyle ecommerce</span><h3>Studley Duds</h3><p>Personality-rich design that turns a playful brand into a destination.</p></div></div>
+          </article>
+          <article class="landing-preview" aria-hidden="true" style="--preview-tilt: -1.1deg; --preview-position: center top">
+            <div class="landing-preview__browser"><span class="landing-preview__dot"></span><span class="landing-preview__dot"></span><span class="landing-preview__dot"></span><span class="landing-preview__address"></span></div>
+            <div class="landing-preview__screen"><img src="asstes/landing-pages/curio-blvd.jpg" alt="" loading="lazy" decoding="async" /><div class="landing-preview__copy"><span class="landing-preview__tag">Jewelry ecommerce</span><h3>Curio Blvd</h3><p>An art-directed storefront that makes every product feel collectible.</p></div></div>
+          </article>
+          <article class="landing-preview" aria-hidden="true" style="--preview-tilt: 0.9deg; --preview-position: center">
+            <div class="landing-preview__browser"><span class="landing-preview__dot"></span><span class="landing-preview__dot"></span><span class="landing-preview__dot"></span><span class="landing-preview__address"></span></div>
+            <div class="landing-preview__screen"><img src="asstes/landing-pages/revarcine.jpg" alt="" loading="lazy" decoding="async" /><div class="landing-preview__copy"><span class="landing-preview__tag">Cinema technology</span><h3>Revar Cine</h3><p>A cinematic product experience where precision meets visual impact.</p></div></div>
+          </article>
+        </div>
+      </div>
+
+      <p class="landing-showcase__note"><span>←</span><span class="landing-showcase__note-copy">Hover to pause the showcase</span><span>→</span></p>
+    </section>
 
     <!-- ============== PERSONAL BRANDING / FOUNDER STORY ============== -->
     <section id="about-founder" class="brand-story" aria-labelledby="brand-story-title">
@@ -7819,21 +8743,21 @@
 
         <article class="brand-story__note brand-story__note--about brand-story__reveal brand-story__reveal--left" data-story-delay="220">
           <p class="brand-story__note-text">
-            As a growth-focused creative, I never liked boring campaigns. I believe every brand deserves ads that feel sharp, clear, and built for momentum — not just clicks. That mindset pulled me deeper into <strong>performance marketing</strong>.
+            I never believed performance marketing should feel generic. Every brand deserves creative that feels sharp, intentional, and built for momentum — not merely clicks. That belief shaped my approach to <strong>performance marketing</strong>.
           </p>
         </article>
 
         <article class="brand-story__note brand-story__note--role brand-story__reveal brand-story__reveal--right" data-story-delay="340">
           <h3 class="brand-story__note-title">Founder <span>- DrioGrowth</span></h3>
           <p class="brand-story__note-text">
-            DrioGrowth helps ecommerce and lead-generation brands scale with Meta Ads, Google Ads, TikTok Ads, creative testing, and conversion-focused strategy.
+            I founded DrioGrowth to help ecommerce and lead-generation brands scale through performance media, conversion-focused creative, and strategy grounded in measurable growth.
           </p>
         </article>
 
         <article class="brand-story__note brand-story__note--passion brand-story__reveal brand-story__reveal--right" data-story-delay="460">
-          <h3 class="brand-story__note-title">Ads, Creatives & Systems <span>- What keeps the engine moving</span></h3>
+          <h3 class="brand-story__note-title">Creative, Media & Systems <span>- The work behind growth</span></h3>
           <p class="brand-story__note-text">
-            I enjoy building ad systems that turn ideas into revenue. From hooks and scripts to campaign structure and reporting, every detail has one job: better growth.
+            I build systems that turn ideas into repeatable revenue — from hooks and scripts to campaign structure, testing, and reporting. Every detail has one purpose: stronger growth.
           </p>
         </article>
 
@@ -7995,8 +8919,8 @@
       <div class="tc-collab__glass">
         <h2 id="tc-collab-title">Our Ads look good, but perform better.</h2>
         <p>Data-backed creatives built to lower CAC and scale profitably.</p>
-        <a class="tc-collab__btn" href="#contact" aria-label="Start project"
-          >start project</a
+        <a class="tc-collab__btn" href="#contact" aria-label="Book a 30-minute consultation call"
+          >Book a 30-minute consultation call</a
         >
       </div>
     </section>
@@ -8432,24 +9356,239 @@
         }
       }
     
-/* Enforce silent testimonial videos with no visible media controls */
+/* Full testimonial player controls: timeline, audio, speed, PiP and fullscreen. */
 .testimonial-card-3d.video-card .video-card-media {
-  pointer-events: none !important;
+  pointer-events: auto !important;
+  cursor: pointer;
 }
 
-.testimonial-card-3d.video-card .video-card-media::-webkit-media-controls,
-.testimonial-card-3d.video-card .video-card-media::-webkit-media-controls-panel,
-.testimonial-card-3d.video-card .video-card-media::-webkit-media-controls-play-button,
-.testimonial-card-3d.video-card .video-card-media::-webkit-media-controls-timeline,
-.testimonial-card-3d.video-card .video-card-media::-webkit-media-controls-current-time-display,
-.testimonial-card-3d.video-card .video-card-media::-webkit-media-controls-time-remaining-display,
-.testimonial-card-3d.video-card .video-card-media::-webkit-media-controls-volume-slider,
-.testimonial-card-3d.video-card .video-card-media::-webkit-media-controls-mute-button,
-.testimonial-card-3d.video-card .video-card-media::-webkit-media-controls-fullscreen-button,
-.testimonial-card-3d.video-card .video-card-media::-webkit-media-controls-toggle-closed-captions-button {
-  display: none !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
+.testimonial-card-3d.video-card .testimonial-video-toggle {
+  display: none;
+}
+
+.testimonial-player-controls {
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  z-index: 6;
+  padding: 0.55rem 0.65rem;
+  border-radius: 0.9rem;
+  color: #fff;
+  background: rgba(18, 18, 18, 0.86);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+}
+
+.testimonial-player-controls button,
+.testimonial-player-controls select,
+.testimonial-player-controls input {
+  accent-color: var(--brand);
+}
+
+.testimonial-player-timeline {
+  width: 100%;
+  height: 4px;
+  margin: 0 0 0.45rem;
+  cursor: pointer;
+}
+
+.testimonial-player-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.testimonial-player-button {
+  width: 1.8rem;
+  height: 1.8rem;
+  border: 0;
+  border-radius: 0.5rem;
+  color: #fff;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.testimonial-player-button:hover,
+.testimonial-player-button:focus-visible {
+  color: var(--ink);
+  background: var(--brand);
+  outline: none;
+}
+
+.testimonial-player-time {
+  min-width: 4.8rem;
+  font-size: 0.65rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.testimonial-player-volume {
+  width: 3rem;
+  min-width: 2.25rem;
+  height: 4px;
+  cursor: pointer;
+}
+
+.testimonial-player-speed {
+  width: 3.35rem;
+  height: 1.8rem;
+  border: 0;
+  border-radius: 0.45rem;
+  padding: 0 0.2rem;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+  cursor: pointer;
+  font-size: 0.68rem;
+}
+
+.testimonial-player-speed option {
+  color: #1d1d1d;
+  background: #ffffff;
+}
+
+.video-thumbnail-portrait:fullscreen,
+.video-thumbnail-portrait:-webkit-full-screen {
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-thumbnail-portrait:fullscreen .video-card-media,
+.video-thumbnail-portrait:-webkit-full-screen .video-card-media {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: none;
+  background: #000;
+}
+
+.video-thumbnail-portrait:fullscreen .testimonial-player-controls,
+.video-thumbnail-portrait:-webkit-full-screen .testimonial-player-controls {
+  left: 50%;
+  right: auto;
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  width: min(92vw, 900px);
+  transform: translateX(-50%);
+}
+
+@media (max-width: 768px) {
+  .testimonial-player-volume {
+    display: none;
+  }
+
+  .testimonial-player-time {
+    min-width: 4.1rem;
+    font-size: 0.58rem;
+  }
+}
+
+@media (max-width: 640px) {
+  #reviews.section {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  #reviews .container {
+    width: 100%;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  #reviews .testimonial-3d-slider {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  #reviews .testimonial-card-3d {
+    flex-basis: 68%;
+    height: min(88vw, 340px) !important;
+    min-height: 0;
+    aspect-ratio: auto;
+    border-radius: 1.2rem;
+  }
+
+  #reviews .video-thumbnail-portrait {
+    height: 100%;
+    min-height: 0;
+    flex: 1 1 auto;
+  }
+
+  #reviews .video-card-media {
+    min-height: 0;
+  }
+
+  #reviews .slider-3d-wrapper {
+    padding-block: 1.5rem;
+  }
+
+  #reviews .slider-3d-track {
+    gap: 0.75rem;
+  }
+
+  #reviews .video-badge {
+    top: 0.55rem;
+    left: 0.55rem;
+    padding: 0.35rem 0.5rem;
+    font-size: 0.55rem;
+    gap: 0.3rem;
+  }
+
+  .testimonial-player-controls {
+    left: 0.5rem;
+    right: 0.5rem;
+    bottom: max(0.5rem, env(safe-area-inset-bottom));
+    width: auto;
+    padding: 0.55rem;
+    border-radius: 0.75rem;
+    transform: none;
+  }
+
+  .testimonial-player-actions {
+    justify-content: space-between;
+    gap: 0.2rem;
+  }
+
+  .testimonial-player-button {
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: 1rem;
+  }
+
+  .testimonial-player-speed {
+    width: 3.6rem;
+    height: 2.25rem;
+    font-size: 0.75rem;
+  }
+
+  .testimonial-player-time {
+    display: none;
+  }
+
+  .testimonial-player-timeline {
+    height: 6px;
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .testimonial-player-pip {
+    display: none;
+  }
+
+  .testimonial-player-time {
+    min-width: 3.8rem;
+    font-size: 0.56rem;
+  }
 }
 
     </style>
@@ -8521,10 +9660,11 @@
                 <div class="video-thumbnail-portrait">
                   <video
                     class="video-card-media"
+                    poster="asstes/optimized/review-posters/review-1.jpg"
                     loop playsinline preload="metadata" disablepictureinpicture controlslist="nodownload noplaybackrate noremoteplayback" aria-label="Client story video testimonial"
                   >
                     <source
-                      src="asstes/Drio review/DRIO REVIEW 1 Rv2.mp4"
+                      data-src="asstes/optimized/review-1.m4v"
                       type="video/mp4"
                     />
                     Your browser does not support the video tag.
@@ -8611,10 +9751,11 @@
                 <div class="video-thumbnail-portrait">
                   <video
                     class="video-card-media"
+                    poster="asstes/optimized/review-posters/review-2.jpg"
                     loop playsinline preload="metadata" disablepictureinpicture controlslist="nodownload noplaybackrate noremoteplayback" aria-label="Client story video testimonial"
                   >
                     <source
-                      src="asstes/Drio review/DRIO REVIEW 2.mp4"
+                      data-src="asstes/optimized/review-2.m4v"
                       type="video/mp4"
                     />
                     Your browser does not support the video tag.
@@ -8697,10 +9838,11 @@
                 <div class="video-thumbnail-portrait">
                   <video
                     class="video-card-media"
+                    poster="asstes/optimized/review-posters/review-3.jpg"
                     loop playsinline preload="metadata" disablepictureinpicture controlslist="nodownload noplaybackrate noremoteplayback" aria-label="Client story video testimonial"
                   >
                     <source
-                      src="asstes/Drio review/DRIO REVIEW 3.mp4"
+                      data-src="asstes/optimized/review-3.m4v"
                       type="video/mp4"
                     />
                     Your browser does not support the video tag.
@@ -8787,10 +9929,11 @@
                 <div class="video-thumbnail-portrait">
                   <video
                     class="video-card-media"
+                    poster="asstes/optimized/review-posters/review-4.jpg"
                     loop playsinline preload="metadata" disablepictureinpicture controlslist="nodownload noplaybackrate noremoteplayback" aria-label="Client story video testimonial"
                   >
                     <source
-                      src="asstes/Drio review/DRIO REVIEW 4.mp4"
+                      data-src="asstes/optimized/review-4.m4v"
                       type="video/mp4"
                     />
                     Your browser does not support the video tag.
@@ -8835,10 +9978,11 @@
                 <div class="video-thumbnail-portrait">
                   <video
                     class="video-card-media"
+                    poster="asstes/optimized/review-posters/review-5.jpg"
                     loop playsinline preload="metadata" disablepictureinpicture controlslist="nodownload noplaybackrate noremoteplayback" aria-label="Client story video testimonial"
                   >
                     <source
-                      src="asstes/Drio review/REVIEW 5.mp4"
+                      data-src="asstes/optimized/review-5.m4v"
                       type="video/mp4"
                     />
                     Your browser does not support the video tag.
@@ -8884,10 +10028,11 @@
                 <div class="video-thumbnail-portrait">
                   <video
                     class="video-card-media"
+                    poster="asstes/optimized/review-posters/review-6.jpg"
                     loop playsinline preload="metadata" disablepictureinpicture controlslist="nodownload noplaybackrate noremoteplayback" aria-label="Client story video testimonial"
                   >
                     <source
-                      src="asstes/Drio review/DRIO REVIEW 6.mp4"
+                      data-src="asstes/optimized/review-6.m4v"
                       type="video/mp4"
                     />
                     Your browser does not support the video tag.
@@ -8932,10 +10077,11 @@
                 <div class="video-thumbnail-portrait">
                   <video
                     class="video-card-media"
+                    poster="asstes/optimized/review-posters/review-7.jpg"
                     loop playsinline preload="metadata" disablepictureinpicture controlslist="nodownload noplaybackrate noremoteplayback" aria-label="Client story video testimonial"
                   >
                     <source
-                      src="asstes/Drio review/DRIO REVIEW 7.mp4"
+                      data-src="asstes/optimized/review-7.m4v"
                       type="video/mp4"
                     />
                     Your browser does not support the video tag.
@@ -9402,7 +10548,7 @@
 
               <!-- Submit Button with 3D Effect -->
               <button type="submit" class="form-submit-btn-3d">
-                <span class="btn-text-3d">Book Strategy Call</span>
+                <span class="btn-text-3d">Book a 30-minute consultation call</span>
                 <span class="btn-arrow-3d">→</span>
                 <div class="btn-3d-bg"></div>
               </button>
@@ -9453,7 +10599,7 @@
           <div class="footer-cta">
             <a href="#contact" class="footer-cta-btn">
               <span class="footer-cta-icon">dg</span>
-              <span>Book a Free 30-min Strategy Call</span>
+              <span>Book a 30-minute consultation call</span>
             </a>
           </div>
 
@@ -9674,13 +10820,14 @@
 
           const activateService = (nextTrigger, options = {}) => {
             const nextCard = nextTrigger?.closest("[data-service-card]");
-            if (!nextCard || nextCard.classList.contains("is-active")) return;
+            if (!nextCard) return;
+            const shouldCollapse = nextCard.classList.contains("is-active");
 
             serviceCards.forEach((card) => {
               const trigger = card.querySelector("[data-service-trigger]");
               const panelId = trigger?.getAttribute("aria-controls");
               const panel = panelId ? document.getElementById(panelId) : null;
-              const shouldOpen = card === nextCard;
+              const shouldOpen = card === nextCard && !shouldCollapse;
 
               card.classList.toggle("is-active", shouldOpen);
               trigger?.setAttribute("aria-expanded", String(shouldOpen));
@@ -10074,10 +11221,10 @@
           const cards = Array.from(slider3D.children);
 
           const getCardsToShow = () => {
-            if (window.innerWidth <= 640) return 1;
+            if (window.innerWidth <= 640) return 2;
             if (window.innerWidth <= 768) return 2;
-            if (window.innerWidth <= 1200) return 3;
-            return 4;
+            if (window.innerWidth <= 1200) return 2;
+            return 3;
           };
 
           const getMaxIndex = () =>
@@ -10637,28 +11784,88 @@
     </script>
 
     <script>
-      // Keep hero videos muted, autoplaying, and looping without visible controls.
+      // Load and play hero videos only while they are actually visible.
       (function () {
-        function startHeroVideos() {
-          document
-            .querySelectorAll(".video-slider-track .video-card-media")
-            .forEach(function (video) {
-              video.muted = true;
-              video.loop = true;
-              video.autoplay = true;
-              video.playsInline = true;
-              video.removeAttribute("controls");
-              var playPromise = video.play();
-              if (playPromise && typeof playPromise.catch === "function") {
-                playPromise.catch(function () {});
-              }
-            });
+        const heroVideos = Array.from(
+          document.querySelectorAll(".video-slider-track .video-card-media"),
+        );
+        // Start one lightweight motion card immediately; the remaining cards
+        // show crisp posters, then hydrate after the page becomes interactive.
+        const eagerHeroCount = 1;
+        let deferredHeroesScheduled = false;
+
+        function hydrateVideoSource(video) {
+          if (video.dataset.sourceReady === "true") return;
+          const source = video.querySelector("source[data-src]");
+          if (!source) return;
+          source.src = source.dataset.src;
+          source.removeAttribute("data-src");
+          video.dataset.sourceReady = "true";
+          video.load();
         }
 
-        document.addEventListener("DOMContentLoaded", startHeroVideos);
-        window.addEventListener("load", startHeroVideos);
+        function configureHeroVideo(video) {
+          video.muted = true;
+          video.loop = true;
+          video.autoplay = false;
+          video.preload = "none";
+          video.playsInline = true;
+          video.removeAttribute("autoplay");
+          video.removeAttribute("controls");
+          video.load();
+        }
+
+        heroVideos.forEach(configureHeroVideo);
+
+        function startHeroVideo(video) {
+          hydrateVideoSource(video);
+          video.preload = "auto";
+          const playPromise = video.play();
+          if (playPromise && typeof playPromise.catch === "function") {
+            playPromise.catch(function () {});
+          }
+        }
+
+        function scheduleDeferredHeroes() {
+          if (deferredHeroesScheduled) return;
+          deferredHeroesScheduled = true;
+          const loadDeferred = () => {
+            heroVideos.slice(eagerHeroCount).forEach(startHeroVideo);
+          };
+          window.setTimeout(() => {
+            if ("requestIdleCallback" in window) {
+              window.requestIdleCallback(loadDeferred, { timeout: 1800 });
+            } else {
+              loadDeferred();
+            }
+          }, 3200);
+        }
+
+        if ("IntersectionObserver" in window) {
+          const heroObserver = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                const video = entry.target;
+                if (entry.isIntersecting) {
+                  const videoIndex = heroVideos.indexOf(video);
+                  if (videoIndex < eagerHeroCount) startHeroVideo(video);
+                  else scheduleDeferredHeroes();
+                } else {
+                  video.pause();
+                  video.preload = "none";
+                }
+              });
+            },
+            { rootMargin: "120px 80px", threshold: 0.12 },
+          );
+          heroVideos.forEach((video) => heroObserver.observe(video));
+        } else {
+          heroVideos.slice(0, eagerHeroCount).forEach(startHeroVideo);
+          scheduleDeferredHeroes();
+        }
+
         document.addEventListener("visibilitychange", function () {
-          if (!document.hidden) startHeroVideos();
+          if (document.hidden) heroVideos.forEach((video) => video.pause());
         });
       })();
 
@@ -10669,6 +11876,16 @@
         const testimonialCards = Array.from(
           document.querySelectorAll(".testimonial-card-3d.video-card"),
         );
+
+        function hydrateTestimonialSource(video) {
+          if (video.dataset.sourceReady === "true") return;
+          const source = video.querySelector("source[data-src]");
+          if (!source) return;
+          source.src = source.dataset.src;
+          source.removeAttribute("data-src");
+          video.dataset.sourceReady = "true";
+          video.load();
+        }
 
         function setButtonState(card, isPlaying) {
           const video = card.querySelector(".video-card-media");
@@ -10713,6 +11930,7 @@
           const video = card.querySelector(".video-card-media");
           if (!video) return;
 
+          hydrateTestimonialSource(video);
           video.muted = false;
           video.volume = 1;
           const playPromise = video.play();
@@ -10722,6 +11940,112 @@
             });
           }
           setButtonState(card, true);
+        }
+
+        function formatVideoTime(seconds) {
+          if (!Number.isFinite(seconds)) return "0:00";
+          const minutes = Math.floor(seconds / 60);
+          const remaining = Math.floor(seconds % 60);
+          return `${minutes}:${String(remaining).padStart(2, "0")}`;
+        }
+
+        function buildPlayerControls(card, video) {
+          const controls = document.createElement("div");
+          controls.className = "testimonial-player-controls";
+          controls.setAttribute("role", "group");
+          controls.setAttribute("aria-label", "Video controls");
+          controls.innerHTML = `
+            <input class="testimonial-player-timeline" type="range" min="0" max="100" value="0" step="0.1" aria-label="Video progress">
+            <div class="testimonial-player-actions">
+              <button class="testimonial-player-button testimonial-player-play" type="button" aria-label="Play video" title="Play or pause">▶</button>
+              <button class="testimonial-player-button testimonial-player-mute" type="button" aria-label="Mute video" title="Mute or unmute">🔊</button>
+              <input class="testimonial-player-volume" type="range" min="0" max="1" value="1" step="0.05" aria-label="Volume">
+              <span class="testimonial-player-time" aria-live="off">0:00 / 0:00</span>
+              <select class="testimonial-player-speed" aria-label="Playback speed" title="Playback speed">
+                <option value="0.5">0.5×</option>
+                <option value="0.75">0.75×</option>
+                <option value="1" selected>1×</option>
+                <option value="1.25">1.25×</option>
+                <option value="1.5">1.5×</option>
+                <option value="2">2×</option>
+              </select>
+              <button class="testimonial-player-button testimonial-player-pip" type="button" aria-label="Picture in picture" title="Picture in picture">▣</button>
+              <button class="testimonial-player-button testimonial-player-fullscreen" type="button" aria-label="Enter fullscreen" title="Fullscreen">⛶</button>
+            </div>`;
+
+          const timeline = controls.querySelector(".testimonial-player-timeline");
+          const playButton = controls.querySelector(".testimonial-player-play");
+          const muteButton = controls.querySelector(".testimonial-player-mute");
+          const volume = controls.querySelector(".testimonial-player-volume");
+          const time = controls.querySelector(".testimonial-player-time");
+          const speed = controls.querySelector(".testimonial-player-speed");
+          const pipButton = controls.querySelector(".testimonial-player-pip");
+          const fullscreenButton = controls.querySelector(".testimonial-player-fullscreen");
+
+          function refreshControls() {
+            const duration = Number.isFinite(video.duration) ? video.duration : 0;
+            timeline.value = duration ? String((video.currentTime / duration) * 100) : "0";
+            time.textContent = `${formatVideoTime(video.currentTime)} / ${formatVideoTime(duration)}`;
+            playButton.textContent = video.paused ? "▶" : "❚❚";
+            playButton.setAttribute("aria-label", video.paused ? "Play video" : "Pause video");
+            muteButton.textContent = video.muted || video.volume === 0 ? "🔇" : "🔊";
+            muteButton.setAttribute("aria-label", video.muted ? "Unmute video" : "Mute video");
+          }
+
+          controls.addEventListener("click", (event) => event.stopPropagation());
+          controls.addEventListener("pointerdown", (event) => event.stopPropagation());
+
+          playButton.addEventListener("click", () => {
+            if (video.paused) playCard(card);
+            else pauseCard(card, false);
+          });
+          muteButton.addEventListener("click", () => {
+            video.muted = !video.muted;
+            refreshControls();
+          });
+          volume.addEventListener("input", () => {
+            video.volume = Number(volume.value);
+            video.muted = video.volume === 0;
+            refreshControls();
+          });
+          timeline.addEventListener("input", () => {
+            if (Number.isFinite(video.duration)) {
+              video.currentTime = (Number(timeline.value) / 100) * video.duration;
+            }
+          });
+          speed.addEventListener("change", () => {
+            video.playbackRate = Number(speed.value);
+          });
+          pipButton.addEventListener("click", async () => {
+            if (!document.pictureInPictureEnabled || !video.requestPictureInPicture) return;
+            try {
+              if (document.pictureInPictureElement) await document.exitPictureInPicture();
+              else await video.requestPictureInPicture();
+            } catch (error) {}
+          });
+          fullscreenButton.addEventListener("click", async () => {
+            try {
+              if (document.fullscreenElement) await document.exitFullscreen();
+              else {
+                const playerShell = card.querySelector(".video-thumbnail-portrait");
+                if (playerShell?.requestFullscreen) await playerShell.requestFullscreen();
+                else if (playerShell?.webkitRequestFullscreen) playerShell.webkitRequestFullscreen();
+              }
+            } catch (error) {}
+          });
+
+          video.addEventListener("click", () => {
+            if (video.paused) playCard(card);
+            else pauseCard(card, false);
+          });
+          ["loadedmetadata", "durationchange", "timeupdate", "volumechange", "play", "pause", "ratechange"]
+            .forEach((eventName) => video.addEventListener(eventName, refreshControls));
+
+          if (!document.pictureInPictureEnabled || !video.requestPictureInPicture) {
+            pipButton.hidden = true;
+          }
+          card.querySelector(".video-thumbnail-portrait")?.appendChild(controls);
+          refreshControls();
         }
 
         testimonialCards.forEach((card) => {
@@ -10735,11 +12059,18 @@
           video.volume = 1;
           video.removeAttribute("autoplay");
           video.removeAttribute("muted");
+          video.controls = false;
           video.removeAttribute("controls");
+          video.removeAttribute("controlslist");
+          video.removeAttribute("disablepictureinpicture");
+          video.disablePictureInPicture = false;
           video.setAttribute("playsinline", "");
-          video.setAttribute("preload", "metadata");
+          video.preload = "none";
+          video.setAttribute("preload", "none");
+          video.load();
 
           pauseCard(card, true);
+          buildPlayerControls(card, video);
 
           button.addEventListener("click", () => {
             const isPlaying = !video.paused && !video.ended;
@@ -10754,6 +12085,9 @@
           video.addEventListener("pause", () => setButtonState(card, false));
           video.addEventListener("ended", () => pauseCard(card, true));
         });
+
+        // Posters are lightweight static images; the actual video source is
+        // hydrated only after a visitor presses play.
 
         // Pause videos when the testimonial section leaves view or slider changes.
         if (testimonialSection && "IntersectionObserver" in window) {
@@ -10832,6 +12166,19 @@
           },
           { passive: true },
         );
+      })();
+    </script>
+
+    <script>
+      // Give touch users the same pause control that desktop users get on hover.
+      (function () {
+        const landingRail = document.querySelector(".landing-showcase__rail");
+        if (!landingRail) return;
+
+        landingRail.addEventListener("click", function () {
+          if (!window.matchMedia("(hover: none)").matches) return;
+          landingRail.classList.toggle("is-paused");
+        });
       })();
     </script>
 

@@ -4355,6 +4355,15 @@
         .footer-cta {
           display: flex;
           justify-content: center;
+          width: 100%;
+          justify-self: center;
+        }
+
+        .footer-cta-btn {
+          max-width: 100%;
+          margin-inline: auto;
+          justify-content: center;
+          text-align: center;
         }
 
         .footer-back-top {
@@ -5462,6 +5471,64 @@
         }
         a.btn.btn-primary {
           display: none;
+        }
+      }
+
+      /* Touch screens use the explicit .is-open state instead of sticky :hover. */
+      @media (max-width: 768px) and (hover: none),
+        (max-width: 768px) and (pointer: coarse) {
+        .why-card-3d:not(.is-open):hover {
+          width: 100%;
+          height: 120px;
+          transform: translateY(0);
+        }
+
+        .why-card-3d:not(.is-open):hover .card-inner-3d {
+          flex-direction: row;
+          justify-content: flex-start;
+          padding: 1.5rem;
+          border-color: rgba(154, 205, 50, 0.2);
+          background: linear-gradient(
+            135deg,
+            rgba(250, 247, 240, 0.05) 0%,
+            rgba(250, 247, 240, 0.02) 100%
+          );
+          box-shadow: none;
+        }
+
+        .why-card-3d:not(.is-open):hover .card-glow,
+        .why-card-3d:not(.is-open):hover .card-number,
+        .why-card-3d:not(.is-open):hover .card-title-3d,
+        .why-card-3d:not(.is-open):hover .card-desc-3d,
+        .why-card-3d:not(.is-open):hover .card-badge {
+          opacity: 0;
+          max-height: 0;
+        }
+
+        .why-card-3d:not(.is-open):hover .card-number,
+        .why-card-3d:not(.is-open):hover .card-title-3d,
+        .why-card-3d:not(.is-open):hover .card-desc-3d {
+          transform: translateY(20px);
+        }
+
+        .why-card-3d:not(.is-open):hover .card-badge {
+          transform: translateY(20px) scale(0.9);
+          background: rgba(154, 205, 50, 0.15);
+          color: var(--brand);
+          box-shadow: none;
+        }
+
+        .why-card-3d:not(.is-open):hover .card-icon {
+          margin-right: 1rem;
+          margin-bottom: 0;
+          background: rgba(154, 205, 50, 0.12);
+          border-color: rgba(154, 205, 50, 0.25);
+          transform: none;
+          box-shadow: 0 4px 16px rgba(154, 205, 50, 0.1);
+        }
+
+        .why-card-3d:not(.is-open):hover .card-icon svg {
+          transform: none;
         }
       }
 
@@ -8812,6 +8879,18 @@
                   loading="lazy"
                 />
               </article>
+              <article class="tc-media tc-media--image tc-media--mobile-clone" aria-hidden="true">
+                <img src="asstes/ads/WhatsApp Image 2026-05-07 at 9.38.28 PM (1).jpeg" alt="" loading="lazy" />
+              </article>
+              <article class="tc-media tc-media--image tc-media--mobile-clone" aria-hidden="true">
+                <img src="asstes/ads/WhatsApp Image 2026-05-07 at 9.38.28 PM.jpeg" alt="" loading="lazy" />
+              </article>
+              <article class="tc-media tc-media--image tc-media--mobile-clone" aria-hidden="true">
+                <img src="asstes/ads/WhatsApp Image 2026-05-07 at 9.38.29 PM (1).jpeg" alt="" loading="lazy" />
+              </article>
+              <article class="tc-media tc-media--image tc-media--mobile-clone" aria-hidden="true">
+                <img src="asstes/ads/WhatsApp Image 2026-05-07 at 9.38.29 PM.jpeg" alt="" loading="lazy" />
+              </article>
             </div>
           </div>
 
@@ -8844,6 +8923,18 @@
                   alt="Team discussing project progress"
                   loading="lazy"
                 />
+              </article>
+              <article class="tc-media tc-media--image tc-media--mobile-clone" aria-hidden="true">
+                <img src="asstes/ads/WhatsApp Image 2026-05-07 at 9.38.31 PM.jpeg" alt="" loading="lazy" />
+              </article>
+              <article class="tc-media tc-media--image tc-media--mobile-clone" aria-hidden="true">
+                <img src="asstes/ads/WhatsApp Image 2026-05-07 at 9.39.49 PM.jpeg" alt="" loading="lazy" />
+              </article>
+              <article class="tc-media tc-media--image tc-media--mobile-clone" aria-hidden="true">
+                <img src="asstes/ads/WhatsApp Image 2026-05-07 at 9.46.39 PM (1).jpeg" alt="" loading="lazy" />
+              </article>
+              <article class="tc-media tc-media--image tc-media--mobile-clone" aria-hidden="true">
+                <img src="asstes/ads/WhatsApp Image 2026-05-07 at 9.46.39 PM.jpeg" alt="" loading="lazy" />
               </article>
             </div>
           </div>
@@ -8992,6 +9083,10 @@
         gap: clamp(12px, 1.4vw, 22px);
         will-change: transform;
         transform: translate3d(0, 0, 0);
+      }
+
+      .tc-media--mobile-clone {
+        display: none;
       }
 
       .tc-collab__col--down .tc-collab__track {
@@ -9310,9 +9405,13 @@
         }
 
         .tc-media {
-          min-height: 160px;
+          min-height: 210px;
           padding: 16px;
           border-radius: 18px;
+        }
+
+        .tc-media--mobile-clone {
+          display: flex;
         }
 
         .tc-media--tall {
@@ -9455,6 +9554,10 @@
   background: #ffffff;
 }
 
+.testimonial-player-speed-cycle {
+  display: none;
+}
+
 .video-thumbnail-portrait:fullscreen,
 .video-thumbnail-portrait:-webkit-full-screen {
   width: 100vw;
@@ -9546,30 +9649,56 @@
   }
 
   .testimonial-player-controls {
-    left: 0.5rem;
-    right: 0.5rem;
-    bottom: max(0.5rem, env(safe-area-inset-bottom));
+    left: 0.4rem;
+    right: 0.4rem;
+    bottom: max(0.4rem, env(safe-area-inset-bottom));
     width: auto;
-    padding: 0.55rem;
-    border-radius: 0.75rem;
+    padding: 0.38rem 0.42rem 0.42rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.65rem;
+    background: linear-gradient(180deg, rgba(16, 16, 16, 0.78), rgba(8, 8, 8, 0.94));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.24);
     transform: none;
   }
 
   .testimonial-player-actions {
-    justify-content: space-between;
-    gap: 0.2rem;
+    justify-content: center;
+    gap: 0.32rem;
   }
 
   .testimonial-player-button {
-    width: 2.25rem;
-    height: 2.25rem;
-    font-size: 1rem;
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 0.45rem;
+    font-size: 0.82rem;
   }
 
   .testimonial-player-speed {
-    width: 3.6rem;
-    height: 2.25rem;
-    font-size: 0.75rem;
+    display: none;
+  }
+
+  .testimonial-player-speed-cycle {
+    display: inline-flex;
+    width: 2.7rem;
+    height: 1.8rem;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 999px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    font-size: 0.66rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+
+  .testimonial-player-speed-cycle:active,
+  .testimonial-player-speed-cycle:focus-visible {
+    color: var(--ink);
+    background: var(--brand);
+    border-color: var(--brand);
+    outline: none;
   }
 
   .testimonial-player-time {
@@ -9577,8 +9706,12 @@
   }
 
   .testimonial-player-timeline {
-    height: 6px;
-    margin-bottom: 0.5rem;
+    height: 3px;
+    margin-bottom: 0.35rem;
+  }
+
+  .testimonial-player-pip {
+    display: none;
   }
 }
 
@@ -10489,11 +10622,11 @@
                   name="email"
                   type="email"
                   class="form-input-3d"
-                  placeholder="Work Email"
+                  placeholder="Email"
                   autocomplete="email"
                   required
                 />
-                <label for="workEmail" class="form-label-3d">Work Email</label>
+                <label for="workEmail" class="form-label-3d">Email</label>
                 <div class="form-input-underline"></div>
               </div>
 
@@ -10508,8 +10641,23 @@
                   autocomplete="organization"
                   required
                 />
-                <label for="brandName" class="form-label-3d"
-                  >Brand / Business</label
+                <label for="brandName" class="form-label-3d">Your Brand</label>
+                <div class="form-input-underline"></div>
+              </div>
+
+              <!-- Website / Instagram -->
+              <div class="form-group-3d">
+                <input
+                  id="websiteInstagram"
+                  name="website_or_instagram"
+                  type="text"
+                  class="form-input-3d"
+                  placeholder="Website / Instagram Link"
+                  autocomplete="url"
+                  required
+                />
+                <label for="websiteInstagram" class="form-label-3d"
+                  >Website / Instagram Link</label
                 >
                 <div class="form-input-underline"></div>
               </div>
@@ -10541,11 +10689,11 @@
                   name="goals"
                   class="form-input-3d form-textarea-3d"
                   rows="4"
-                  placeholder="Your goals..."
+                  placeholder="What are the main problems that you're facing right now?"
                   required
                 ></textarea>
                 <label for="goals" class="form-label-3d"
-                  >Tell Us Your Goals</label
+                  >What are the main problems that you're facing right now?</label
                 >
                 <div class="form-input-underline"></div>
               </div>
@@ -11551,6 +11699,12 @@
           });
         });
 
+        // On mobile, begin with the first card open; every card can still close.
+        if (window.matchMedia("(max-width: 768px)").matches && whyCards[0]) {
+          whyCards[0].classList.add("is-open");
+          whyCards[0].setAttribute("aria-expanded", "true");
+        }
+
         // Hero video slider: Desktop wheel enhancement
         const videoSliderContainer = document.getElementById(
           "videoSliderContainer",
@@ -12008,6 +12162,7 @@
                 <option value="1.5">1.5×</option>
                 <option value="2">2×</option>
               </select>
+              <button class="testimonial-player-button testimonial-player-speed-cycle" type="button" aria-label="Change playback speed" title="Tap to change playback speed">1×</button>
               <button class="testimonial-player-button testimonial-player-pip" type="button" aria-label="Picture in picture" title="Picture in picture">▣</button>
               <button class="testimonial-player-button testimonial-player-fullscreen" type="button" aria-label="Enter fullscreen" title="Fullscreen">⛶</button>
             </div>`;
@@ -12018,6 +12173,7 @@
           const volume = controls.querySelector(".testimonial-player-volume");
           const time = controls.querySelector(".testimonial-player-time");
           const speed = controls.querySelector(".testimonial-player-speed");
+          const speedCycle = controls.querySelector(".testimonial-player-speed-cycle");
           const pipButton = controls.querySelector(".testimonial-player-pip");
           const fullscreenButton = controls.querySelector(".testimonial-player-fullscreen");
 
@@ -12029,6 +12185,7 @@
             playButton.setAttribute("aria-label", video.paused ? "Play video" : "Pause video");
             muteButton.textContent = video.muted || video.volume === 0 ? "🔇" : "🔊";
             muteButton.setAttribute("aria-label", video.muted ? "Unmute video" : "Mute video");
+            speedCycle.textContent = `${video.playbackRate}×`;
           }
 
           controls.addEventListener("click", (event) => event.stopPropagation());
@@ -12054,6 +12211,13 @@
           });
           speed.addEventListener("change", () => {
             video.playbackRate = Number(speed.value);
+          });
+          speedCycle.addEventListener("click", () => {
+            const mobileSpeeds = [1, 1.25, 1.5, 2, 0.75, 0.5];
+            const currentIndex = mobileSpeeds.indexOf(video.playbackRate);
+            video.playbackRate = mobileSpeeds[(currentIndex + 1) % mobileSpeeds.length];
+            speed.value = String(video.playbackRate);
+            refreshControls();
           });
           pipButton.addEventListener("click", async () => {
             if (!document.pictureInPictureEnabled || !video.requestPictureInPicture) return;

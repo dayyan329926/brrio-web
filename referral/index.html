@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta name="description" content="Private DrioGrowth client referral page." />
+    <title>Client Referral Program — DrioGrowth</title>
+    <link rel="icon" href="/asstes/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --brand: #9acd32;
+        --brand-deep: #78a71c;
+        --cream: #faf7f0;
+        --sage: #f3f6e8;
+        --ink: #292a27;
+        --muted: #686c63;
+        --line: rgba(41, 42, 39, 0.12);
+        --dark: #1d1e1b;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-height: 100vh;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 10% 8%, rgba(154, 205, 50, 0.16), transparent 30rem),
+          radial-gradient(circle at 88% 30%, rgba(244, 196, 48, 0.12), transparent 28rem),
+          var(--cream);
+        font-family: "Urbanist", system-ui, sans-serif;
+        line-height: 1.5;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .page-shell {
+        width: min(1180px, calc(100% - 2rem));
+        margin: 0 auto;
+      }
+
+      .private-bar {
+        padding: 0.7rem 1rem;
+        color: rgba(255, 255, 255, 0.74);
+        background: var(--dark);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .site-header {
+        position: relative;
+        z-index: 10;
+        padding: 1.25rem 0;
+      }
+
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.85rem 1rem;
+        border: 1px solid rgba(41, 42, 39, 0.08);
+        border-radius: 999px;
+        background: rgba(250, 247, 240, 0.82);
+        backdrop-filter: blur(18px);
+        box-shadow: 0 16px 40px rgba(41, 42, 39, 0.08);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: 850;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 2.35rem;
+        height: 2.35rem;
+        place-items: center;
+        border: 0.34rem solid var(--ink);
+        border-radius: 50%;
+        background: var(--brand);
+      }
+
+      .brand-mark::after {
+        width: 0.48rem;
+        height: 0.48rem;
+        border-radius: 50%;
+        background: var(--ink);
+        content: "";
+      }
+
+      .header-tag {
+        padding: 0.55rem 0.9rem;
+        border-radius: 999px;
+        color: var(--brand);
+        background: var(--ink);
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .hero {
+        padding: clamp(3rem, 8vw, 7rem) 0 clamp(3rem, 7vw, 6rem);
+        text-align: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        margin-bottom: 1.2rem;
+        padding: 0.5rem 0.85rem;
+        border: 1px solid rgba(122, 170, 31, 0.25);
+        border-radius: 999px;
+        color: var(--brand-deep);
+        background: rgba(255, 255, 255, 0.52);
+        font-size: 0.75rem;
+        font-weight: 850;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow-dot {
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 50%;
+        background: var(--brand);
+        box-shadow: 0 0 0 0.28rem rgba(154, 205, 50, 0.17);
+      }
+
+      h1 {
+        max-width: 920px;
+        margin: 0 auto;
+        font-size: clamp(2.7rem, 7.4vw, 6.3rem);
+        font-weight: 900;
+        line-height: 0.95;
+        letter-spacing: -0.065em;
+      }
+
+      h1 span {
+        color: var(--brand-deep);
+      }
+
+      .hero-copy {
+        max-width: 690px;
+        margin: 1.5rem auto 0;
+        color: var(--muted);
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        font-weight: 550;
+      }
+
+      .reward-strip {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        max-width: 820px;
+        margin: 2.25rem auto 0;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 1.25rem;
+        background: var(--line);
+      }
+
+      .reward-item {
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.68);
+      }
+
+      .reward-item strong {
+        display: block;
+        font-size: 1.2rem;
+        font-weight: 900;
+      }
+
+      .reward-item span {
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 650;
+      }
+
+      .video-section {
+        padding-bottom: clamp(4rem, 8vw, 7rem);
+      }
+
+      .video-shell {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 16 / 9;
+        border: 1px solid rgba(154, 205, 50, 0.45);
+        border-radius: clamp(1.4rem, 3vw, 2.5rem);
+        background:
+          linear-gradient(135deg, rgba(154, 205, 50, 0.2), transparent 42%),
+          linear-gradient(160deg, #31332e, #181916);
+        box-shadow: 0 30px 80px rgba(41, 42, 39, 0.2);
+      }
+
+      .video-shell video {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        background: #181916;
+      }
+
+      .video-placeholder {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-content: center;
+        padding: 2rem;
+        color: #fff;
+        text-align: center;
+      }
+
+      .play-mark {
+        display: grid;
+        width: clamp(4.5rem, 10vw, 7rem);
+        height: clamp(4.5rem, 10vw, 7rem);
+        margin: 0 auto 1.2rem;
+        place-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.34);
+        border-radius: 50%;
+        color: var(--ink);
+        background: var(--brand);
+        box-shadow: 0 15px 45px rgba(154, 205, 50, 0.3);
+        font-size: clamp(1.3rem, 3vw, 2rem);
+      }
+
+      .video-placeholder strong {
+        font-size: clamp(1.2rem, 3vw, 2rem);
+      }
+
+      .video-placeholder p {
+        margin-top: 0.35rem;
+        color: rgba(255, 255, 255, 0.65);
+      }
+
+      .process-section {
+        padding: clamp(4rem, 8vw, 7rem) 0;
+        background: var(--dark);
+        color: #fff;
+      }
+
+      .section-heading {
+        max-width: 720px;
+        margin-bottom: 2.2rem;
+      }
+
+      .section-heading span {
+        color: var(--brand);
+        font-size: 0.78rem;
+        font-weight: 850;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      h2 {
+        margin-top: 0.55rem;
+        font-size: clamp(2.1rem, 5vw, 4.2rem);
+        font-weight: 900;
+        line-height: 1;
+        letter-spacing: -0.05em;
+      }
+
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+
+      .step {
+        min-height: 230px;
+        padding: 1.5rem;
+        border: 1px solid rgba(154, 205, 50, 0.22);
+        border-radius: 1.5rem;
+        background: rgba(255, 255, 255, 0.035);
+      }
+
+      .step-number {
+        color: var(--brand);
+        font-size: 0.8rem;
+        font-weight: 900;
+        letter-spacing: 0.1em;
+      }
+
+      .step h3 {
+        margin-top: 3.5rem;
+        font-size: 1.35rem;
+      }
+
+      .step p {
+        margin-top: 0.7rem;
+        color: rgba(255, 255, 255, 0.62);
+      }
+
+      .form-section {
+        padding: clamp(4rem, 9vw, 8rem) 0;
+      }
+
+      .form-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+        gap: clamp(2rem, 6vw, 6rem);
+        align-items: start;
+      }
+
+      .form-intro {
+        position: sticky;
+        top: 2rem;
+      }
+
+      .form-intro p {
+        max-width: 480px;
+        margin-top: 1rem;
+        color: var(--muted);
+        font-size: 1.05rem;
+      }
+
+      .ref-code-card {
+        margin-top: 1.5rem;
+        padding: 1rem 1.1rem;
+        border: 1px dashed rgba(122, 170, 31, 0.55);
+        border-radius: 1rem;
+        background: var(--sage);
+      }
+
+      .ref-code-card small {
+        display: block;
+        color: var(--muted);
+        font-weight: 700;
+      }
+
+      .ref-code-card strong {
+        color: var(--brand-deep);
+        font-size: 1.1rem;
+      }
+
+      .referral-form {
+        padding: clamp(1.25rem, 4vw, 2.5rem);
+        border: 1px solid var(--line);
+        border-radius: 2rem;
+        background: rgba(255, 255, 255, 0.76);
+        box-shadow: 0 24px 70px rgba(41, 42, 39, 0.1);
+        backdrop-filter: blur(16px);
+      }
+
+      .field-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+
+      .field {
+        display: grid;
+        gap: 0.45rem;
+        margin-bottom: 1rem;
+      }
+
+      .field.full {
+        grid-column: 1 / -1;
+      }
+
+      label {
+        font-size: 0.8rem;
+        font-weight: 800;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: 0.85rem;
+        padding: 0.9rem 1rem;
+        color: var(--ink);
+        background: rgba(250, 247, 240, 0.75);
+        font: inherit;
+        outline: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      input:focus,
+      textarea:focus {
+        border-color: var(--brand-deep);
+        box-shadow: 0 0 0 0.22rem rgba(154, 205, 50, 0.15);
+      }
+
+      textarea {
+        min-height: 130px;
+        resize: vertical;
+      }
+
+      .consent {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.7rem;
+        margin: 0.4rem 0 1.25rem;
+        color: var(--muted);
+        font-size: 0.78rem;
+      }
+
+      .consent input {
+        width: 1rem;
+        height: 1rem;
+        margin-top: 0.15rem;
+        accent-color: var(--brand-deep);
+      }
+
+      .submit-btn {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        gap: 0.7rem;
+        border: 0;
+        border-radius: 999px;
+        padding: 1rem 1.4rem;
+        color: var(--ink);
+        background: var(--brand);
+        font: inherit;
+        font-weight: 900;
+        cursor: pointer;
+        box-shadow: 6px 6px 0 var(--ink);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .submit-btn:hover {
+        transform: translate(3px, 3px);
+        box-shadow: 3px 3px 0 var(--ink);
+      }
+
+      .submit-btn:disabled {
+        cursor: wait;
+        opacity: 0.72;
+      }
+
+      .form-result {
+        min-height: 1.5rem;
+        margin-top: 1rem;
+        color: var(--brand-deep);
+        font-size: 0.88rem;
+        font-weight: 750;
+        text-align: center;
+      }
+
+      footer {
+        padding: 2.2rem 0;
+        color: rgba(255, 255, 255, 0.62);
+        background: var(--dark);
+        font-size: 0.85rem;
+        text-align: center;
+      }
+
+      @media (max-width: 760px) {
+        .page-shell {
+          width: min(100% - 1.25rem, 1180px);
+        }
+
+        .header-tag {
+          display: none;
+        }
+
+        .reward-strip,
+        .steps,
+        .form-layout,
+        .field-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .reward-item {
+          padding: 0.8rem;
+        }
+
+        .video-shell {
+          aspect-ratio: 4 / 5;
+        }
+
+        .step {
+          min-height: 190px;
+        }
+
+        .step h3 {
+          margin-top: 2rem;
+        }
+
+        .form-intro {
+          position: static;
+        }
+
+        .referral-form {
+          border-radius: 1.4rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="private-bar">Private client referral page</div>
+
+    <header class="site-header">
+      <div class="page-shell header-inner">
+        <a class="brand" href="/" aria-label="DrioGrowth home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>DrioGrowth</span>
+        </a>
+        <span class="header-tag">Client Partner Program</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="page-shell">
+          <div class="eyebrow"><span class="eyebrow-dot"></span> Built for our existing clients</div>
+          <h1>Introduce a great brand. <span>Earn 10% while we grow it.</span></h1>
+          <p class="hero-copy">
+            Refer a business that becomes a DrioGrowth client and receive 10% of the service fees we collect for as long as that client continues working with us.
+          </p>
+          <div class="reward-strip" aria-label="Referral program highlights">
+            <div class="reward-item"><strong>10%</strong><span>of collected service fees</span></div>
+            <div class="reward-item"><strong>Ongoing</strong><span>while the client stays active</span></div>
+            <div class="reward-item"><strong>Tracked</strong><span>from introduction to payout</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="video-section" aria-label="Referral program video">
+        <div class="page-shell">
+          <div class="video-shell">
+            <video controls playsinline preload="metadata" aria-label="DrioGrowth referral program explained">
+              <source src="https://drio-client-referrals.dayyan-digital.chatgpt.site/asstes/referral-explainer-hd.mp4" type="video/mp4">
+              Your browser does not support this video. <a href="https://drio-client-referrals.dayyan-digital.chatgpt.site/asstes/referral-explainer-hd.mp4">Download the referral explainer</a>.
+            </video>
+          </div>
+        </div>
+      </section>
+
+      <section class="process-section">
+        <div class="page-shell">
+          <div class="section-heading">
+            <span>Simple and transparent</span>
+            <h2>Three steps from introduction to reward.</h2>
+          </div>
+          <div class="steps">
+            <article class="step">
+              <div class="step-number">01 — REFER</div>
+              <h3>Make the introduction</h3>
+              <p>Share the brand and decision-maker details using the private form below.</p>
+            </article>
+            <article class="step">
+              <div class="step-number">02 — WE QUALIFY</div>
+              <h3>We handle the conversation</h3>
+              <p>Our team speaks with the prospect, checks fit, and keeps your referral attribution attached.</p>
+            </article>
+            <article class="step">
+              <div class="step-number">03 — YOU EARN</div>
+              <h3>Receive an ongoing 10%</h3>
+              <p>When the referred brand signs and pays, your referral reward begins and continues while they remain active.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="form-section" id="refer">
+        <div class="page-shell form-layout">
+          <div class="form-intro">
+            <div class="eyebrow"><span class="eyebrow-dot"></span> Submit a referral</div>
+            <h2>Know a brand we should meet?</h2>
+            <p>Give us enough context to make the first conversation useful. We’ll confirm receipt and keep the referral connected to you.</p>
+          </div>
+
+          <form class="referral-form" id="referralForm" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="983fcfc0-79e6-43b2-a37c-a85d684aa71b" />
+            <input type="hidden" name="subject" value="New DrioGrowth client referral" />
+            <input type="hidden" name="referral_code" id="referralCode" value="GENERAL-CLIENT" />
+            <input type="hidden" name="source_page" id="sourcePage" />
+            <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display: none" />
+
+            <div class="field-grid">
+              <div class="field">
+                <label for="referrerName">Your full name</label>
+                <input id="referrerName" name="referrer_name" type="text" autocomplete="name" required />
+              </div>
+              <div class="field">
+                <label for="referrerEmail">Your email</label>
+                <input id="referrerEmail" name="referrer_email" type="email" autocomplete="email" required />
+              </div>
+              <div class="field">
+                <label for="brandName">Referred brand</label>
+                <input id="brandName" name="referred_brand" type="text" required />
+              </div>
+              <div class="field">
+                <label for="contactName">Contact person</label>
+                <input id="contactName" name="contact_name" type="text" required />
+              </div>
+              <div class="field">
+                <label for="contactEmail">Contact email</label>
+                <input id="contactEmail" name="contact_email" type="email" required />
+              </div>
+              <div class="field">
+                <label for="brandLink">Website / Instagram</label>
+                <input id="brandLink" name="website_or_instagram" type="text" required />
+              </div>
+              <div class="field full">
+                <label for="context">Why do you think they’re a good fit?</label>
+                <textarea id="context" name="referral_context" placeholder="A short introduction, their goals, current challenges, or anything we should know."></textarea>
+              </div>
+            </div>
+
+            <label class="consent">
+              <input type="checkbox" name="permission_to_contact" value="yes" required />
+              <span>I confirm that this person is comfortable being introduced to DrioGrowth and that the information above is accurate.</span>
+            </label>
+
+            <button class="submit-btn" type="submit">
+              <span>Submit referral</span><span aria-hidden="true">→</span>
+            </button>
+            <p class="form-result" id="formResult" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer>© 2026 DrioGrowth. Private client referral program. Program terms and eligibility apply.</footer>
+
+    <script>
+      (() => {
+        const params = new URLSearchParams(window.location.search);
+        const rawCode = params.get("ref") || "GENERAL-CLIENT";
+        const safeCode = rawCode.replace(/[^a-zA-Z0-9_-]/g, "").slice(0, 48) || "GENERAL-CLIENT";
+        const referralCode = document.getElementById("referralCode");
+        const sourcePage = document.getElementById("sourcePage");
+        const form = document.getElementById("referralForm");
+        const result = document.getElementById("formResult");
+
+        referralCode.value = safeCode;
+        sourcePage.value = window.location.href;
+
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const button = form.querySelector("button[type='submit']");
+          button.disabled = true;
+          result.textContent = "Submitting your referral…";
+
+          try {
+            const response = await fetch(form.action, {
+              method: "POST",
+              body: new FormData(form),
+              headers: { Accept: "application/json" },
+            });
+            const payload = await response.json();
+            if (!response.ok || !payload.success) throw new Error("Submission failed");
+            form.reset();
+            referralCode.value = safeCode;
+            sourcePage.value = window.location.href;
+            result.textContent = "Referral received. We’ll confirm it with you shortly.";
+          } catch (error) {
+            result.textContent = "We couldn’t submit this referral. Please try again or email info@driogrowth.com.";
+            result.style.color = "#b42318";
+          } finally {
+            button.disabled = false;
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

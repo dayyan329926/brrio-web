@@ -226,6 +226,35 @@
         background: #181916;
       }
 
+      .video-play {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        border: 0;
+        padding: 0;
+        cursor: pointer;
+        background: transparent;
+      }
+      .video-play[hidden] { display: none; }
+      .video-play span {
+        display: grid;
+        place-items: center;
+        width: clamp(70px, 9vw, 106px);
+        aspect-ratio: 1;
+        border-radius: 50%;
+        border: 2px solid rgba(255,255,255,.8);
+        background: rgba(24,25,22,.72);
+        color: white;
+        box-shadow: 0 8px 32px rgba(0,0,0,.3);
+        backdrop-filter: blur(8px);
+        transition: transform .2s, background .2s;
+      }
+      .video-play:hover span { transform: scale(1.07); background: rgba(24,25,22,.9); }
+      .video-play:focus-visible { outline: 3px solid #9acd32; outline-offset: -5px; }
+      .video-play svg { width: 38%; height: 38%; margin-left: 6%; }
+      @media (prefers-reduced-motion: reduce) { .video-play span { transition: none; } }
+
       .video-placeholder {
         position: absolute;
         inset: 0;
@@ -495,7 +524,7 @@
         }
 
         .video-shell {
-          aspect-ratio: 4 / 5;
+          aspect-ratio: 16 / 9;
         }
 
         .step {
@@ -548,10 +577,13 @@
       <section class="video-section" aria-label="Referral program video">
         <div class="page-shell">
           <div class="video-shell">
-            <video controls playsinline preload="metadata" aria-label="DrioGrowth referral program explained">
+            <video id="referralVideo" poster="/asstes/referral_thumbnail_face_unchanged.png" controls playsinline preload="metadata" aria-label="DrioGrowth referral program explained">
               <source src="https://drio-client-referrals.dayyan-digital.chatgpt.site/asstes/referral-explainer-hd.mp4" type="video/mp4">
               Your browser does not support this video. <a href="https://drio-client-referrals.dayyan-digital.chatgpt.site/asstes/referral-explainer-hd.mp4">Download the referral explainer</a>.
             </video>
+            <button class="video-play" id="videoPlay" type="button" aria-label="Play referral program video">
+              <span><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 3l15 9-15 9z"/></svg></span>
+            </button>
           </div>
         </div>
       </section>
@@ -646,6 +678,13 @@
 
     <script>
       (() => {
+        const video = document.getElementById("referralVideo");
+        const playButton = document.getElementById("videoPlay");
+        playButton.addEventListener("click", () => {
+          video.play().catch(() => { playButton.hidden = false; });
+        });
+        video.addEventListener("play", () => { playButton.hidden = true; });
+        video.addEventListener("ended", () => { playButton.hidden = false; });
         const params = new URLSearchParams(window.location.search);
         const rawCode = params.get("ref") || "GENERAL-CLIENT";
         const safeCode = rawCode.replace(/[^a-zA-Z0-9_-]/g, "").slice(0, 48) || "GENERAL-CLIENT";

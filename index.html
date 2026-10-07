@@ -4609,6 +4609,12 @@
       .form-group-3d:nth-child(5) {
         animation-delay: 0.9s;
       }
+      .form-group-3d:nth-child(6) {
+        animation-delay: 1s;
+      }
+      .form-group-3d:nth-child(7) {
+        animation-delay: 1.1s;
+      }
 
       .form-label-3d {
         position: absolute;
@@ -4656,6 +4662,41 @@
         opacity: 1;
         transform: translateY(-25px);
         color: var(--brand);
+      }
+
+      .phone-form-group-3d {
+        padding-top: 0.25rem;
+      }
+
+      .phone-field-3d {
+        display: grid;
+        grid-template-columns: minmax(8.5rem, 0.38fr) minmax(0, 1fr);
+        gap: 1rem;
+        align-items: end;
+      }
+
+      .phone-field-3d .form-input-3d {
+        min-width: 0;
+      }
+
+      .phone-country-code-3d {
+        cursor: pointer;
+        appearance: auto;
+      }
+
+      .phone-field-3d:focus-within + .form-label-3d,
+      .phone-field-3d:has(.phone-number-3d:not(:placeholder-shown)) + .form-label-3d {
+        opacity: 1;
+        transform: translateY(-25px);
+        color: var(--brand);
+      }
+
+      .phone-help-3d {
+        display: block;
+        margin-top: 0.5rem;
+        color: var(--mute);
+        font-size: 0.72rem;
+        line-height: 1.4;
       }
 
       .form-input-underline {
@@ -5078,6 +5119,15 @@
         .form-input-3d {
           padding: 1rem 0;
           font-size: 0.95rem;
+        }
+
+        .phone-field-3d {
+          grid-template-columns: 7.6rem minmax(0, 1fr);
+          gap: 0.75rem;
+        }
+
+        .phone-country-code-3d {
+          font-size: 0.82rem;
         }
 
         .form-submit-btn-3d {
@@ -10660,6 +10710,60 @@
                   >Website / Instagram Link</label
                 >
                 <div class="form-input-underline"></div>
+              </div>
+
+              <!-- Phone number -->
+              <div class="form-group-3d phone-form-group-3d">
+                <div class="phone-field-3d">
+                  <select
+                    id="phoneCountryCode"
+                    name="country_code"
+                    class="form-input-3d phone-country-code-3d"
+                    aria-label="Country calling code"
+                    required
+                  >
+                    <option value="">Code</option>
+                    <option value="+1">US / Canada +1</option>
+                    <option value="+44">UK +44</option>
+                    <option value="+61">Australia +61</option>
+                    <option value="+971">UAE +971</option>
+                    <option value="+92">Pakistan +92</option>
+                    <option value="+91">India +91</option>
+                    <option value="+64">New Zealand +64</option>
+                    <option value="+353">Ireland +353</option>
+                    <option value="+49">Germany +49</option>
+                    <option value="+33">France +33</option>
+                    <option value="+39">Italy +39</option>
+                    <option value="+34">Spain +34</option>
+                    <option value="+31">Netherlands +31</option>
+                    <option value="+46">Sweden +46</option>
+                    <option value="+47">Norway +47</option>
+                    <option value="+45">Denmark +45</option>
+                    <option value="+65">Singapore +65</option>
+                    <option value="+966">Saudi Arabia +966</option>
+                    <option value="+974">Qatar +974</option>
+                    <option value="+27">South Africa +27</option>
+                    <option value="+880">Bangladesh +880</option>
+                    <option value="+90">Turkey +90</option>
+                    <option value="+55">Brazil +55</option>
+                    <option value="+52">Mexico +52</option>
+                  </select>
+                  <input
+                    id="phoneNumber"
+                    name="phone_number"
+                    type="tel"
+                    class="form-input-3d phone-number-3d"
+                    placeholder="Phone Number"
+                    autocomplete="tel-national"
+                    inputmode="tel"
+                    minlength="6"
+                    maxlength="24"
+                    aria-describedby="phoneHelp"
+                    required
+                  />
+                </div>
+                <label for="phoneNumber" class="form-label-3d">Phone Number</label>
+                <small id="phoneHelp" class="phone-help-3d">Select the required country code, then enter your number.</small>
               </div>
 
               <!-- Ad Spend -->

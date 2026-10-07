@@ -4828,6 +4828,28 @@
         box-shadow: 0 40px 100px rgba(154, 205, 50, 0.2);
       }
 
+      .contact-form-wrapper-3d.booking-active .form-success-3d {
+        position: relative;
+        inset: auto;
+        justify-content: flex-start;
+        padding: 2.25rem;
+      }
+
+      .calendly-booking-frame {
+        width: 100%;
+        height: 720px;
+        border: 0;
+        border-radius: 1.25rem;
+        background: var(--cream);
+      }
+
+      .calendly-fallback-link {
+        color: var(--brand-deep);
+        font-weight: 700;
+        text-decoration: underline;
+        text-underline-offset: 0.2em;
+      }
+
       .success-icon-3d {
         width: 100px;
         height: 100px;
@@ -5133,6 +5155,22 @@
         .form-submit-btn-3d {
           padding: 1rem 1.5rem;
           font-size: 0.9rem;
+        }
+
+        .contact-form-wrapper-3d.booking-active .form-success-3d {
+          padding: 1.25rem 0.75rem 1.5rem;
+          gap: 1rem;
+        }
+
+        .contact-form-wrapper-3d.booking-active .success-icon-3d {
+          width: 64px;
+          height: 64px;
+          font-size: 2rem;
+        }
+
+        .calendly-booking-frame {
+          height: 680px;
+          border-radius: 1rem;
         }
       }
       .reveal {
@@ -10821,9 +10859,26 @@
             <!-- Success Message -->
             <div id="formSuccess" class="form-success-3d hidden">
               <div class="success-icon-3d">✓</div>
-              <h3 class="success-title-3d">You're In!</h3>
+              <h3 class="success-title-3d">Choose your meeting time</h3>
               <p class="success-text-3d">
-                We'll reply within 4 business hours with your custom strategy.
+                Your details have been received. Select a convenient time below
+                for your free 30-minute strategy session.
+              </p>
+              <iframe
+                id="calendlyBookingFrame"
+                class="calendly-booking-frame"
+                title="Book a 30-minute strategy session with DrioGrowth"
+                loading="lazy"
+                allow="payment"
+              ></iframe>
+              <p class="success-text-3d">
+                Calendar not loading?
+                <a
+                  class="calendly-fallback-link"
+                  href="https://calendly.com/dayyanjavaid/30-minute-strategy-session"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >Open Calendly in a new tab</a>.
               </p>
             </div>
           </div>
@@ -11706,6 +11761,20 @@
               }
 
               leadForm.classList.add("hidden");
+              const bookingFrame = document.getElementById("calendlyBookingFrame");
+              const bookingUrl = new URL(
+                "https://calendly.com/dayyanjavaid/30-minute-strategy-session",
+              );
+              bookingUrl.searchParams.set("name", payload.full_name || "");
+              bookingUrl.searchParams.set("email", payload.email || "");
+              bookingUrl.searchParams.set("background_color", "ffffff");
+              bookingUrl.searchParams.set("text_color", "2b2b2b");
+              bookingUrl.searchParams.set("primary_color", "9acd32");
+              if (bookingFrame) bookingFrame.src = bookingUrl.toString();
+
+              leadForm.closest(".contact-form-wrapper-3d")?.classList.add(
+                "booking-active",
+              );
               successElement.classList.remove("hidden");
               successElement.setAttribute("aria-live", "polite");
               leadForm.reset();

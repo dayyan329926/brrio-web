@@ -10793,15 +10793,18 @@
                     class="form-input-3d phone-number-3d"
                     placeholder="Phone Number"
                     autocomplete="tel-national"
-                    inputmode="tel"
+                    inputmode="numeric"
                     minlength="6"
-                    maxlength="24"
+                    maxlength="15"
+                    pattern="[0-9]{6,15}"
+                    title="Enter 6 to 15 digits without letters."
+                    oninput="this.value = this.value.replace(/\D/g, '')"
                     aria-describedby="phoneHelp"
                     required
                   />
                 </div>
                 <label for="phoneNumber" class="form-label-3d">Phone Number</label>
-                <small id="phoneHelp" class="phone-help-3d">Select the required country code, then enter your number.</small>
+                <small id="phoneHelp" class="phone-help-3d">Select the required country code, then enter 6–15 digits.</small>
               </div>
 
               <!-- Ad Spend -->
@@ -10813,7 +10816,8 @@
                   required
                 >
                   <option value="">Select your range...</option>
-                  <option value="under10k">Under $10k / month</option>
+                  <option value="under5k">Less than $5,000 / month</option>
+                  <option value="5k-10k">$5,000 – $10,000 / month</option>
                   <option value="10k-50k">$10k – $50k / month</option>
                   <option value="50k-200k">$50k – $200k / month</option>
                   <option value="200k+">$200k+ / month</option>
@@ -11731,6 +11735,11 @@
         // Contact form submission through Web3Forms.
         const leadForm = document.getElementById("leadForm");
         if (leadForm) {
+          const phoneNumberInput = leadForm.querySelector("#phoneNumber");
+          phoneNumberInput?.addEventListener("input", () => {
+            phoneNumberInput.value = phoneNumberInput.value.replace(/\D/g, "");
+          });
+
           leadForm.addEventListener("submit", async (event) => {
             event.preventDefault();
             const successElement = document.getElementById("formSuccess");
